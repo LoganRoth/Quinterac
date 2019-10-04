@@ -1,0 +1,11 @@
+login
+machine
+deposit
+1234567
+199900
+deposit
+1234567
+199900
+1234567
+100300
+logout
