@@ -1,0 +1,6 @@
+login
+machine
+deleteacct
+2234567
+abc
+logout

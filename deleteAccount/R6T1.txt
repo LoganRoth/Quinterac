@@ -1,0 +1,6 @@
+login
+machine
+deletacct
+1234567
+abc
+logout
