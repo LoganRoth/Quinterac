@@ -1,6 +1,6 @@
 login
 machine
-deletacct
+deleteacct
 1234567
 abc
 logout
