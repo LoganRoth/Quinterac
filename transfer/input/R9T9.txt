@@ -1,0 +1,8 @@
+login
+agent
+transfer
+1234567
+1234
+7654321
+logout
+

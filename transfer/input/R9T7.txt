@@ -1,0 +1,6 @@
+login
+Machine transfer
+1234567
+1234
+abcd
+logout
