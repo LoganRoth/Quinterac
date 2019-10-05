@@ -1,0 +1,2 @@
+ERR
+"Can't delete an account if you are not logged in"

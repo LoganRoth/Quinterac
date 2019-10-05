@@ -1,0 +1,2 @@
+ERR
+"You can't delete an account before you are logged in

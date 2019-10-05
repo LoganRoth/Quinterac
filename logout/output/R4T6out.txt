@@ -1,0 +1,2 @@
+ERR
+"You can't deposit if you are logged out"

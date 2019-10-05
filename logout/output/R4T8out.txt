@@ -1,0 +1,2 @@
+ERR
+“You can’t withdraw once you are logged out”

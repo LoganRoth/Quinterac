@@ -1,0 +1,2 @@
+ERR
+“You can’t transfer before logged in”
