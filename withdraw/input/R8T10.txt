@@ -1,0 +1,6 @@
+login
+agent
+Withdraw -1234567
+1234
+7654321
+logout

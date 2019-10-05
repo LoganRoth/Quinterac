@@ -1,0 +1,7 @@
+login
+agent
+withdraw
+1234567
+1234
+0654321
+logout
