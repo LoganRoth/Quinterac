@@ -1,6 +1,6 @@
 login
 agent
-deletacct
+deleteacct
 1234567
 abc
 logout

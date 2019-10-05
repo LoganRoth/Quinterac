@@ -1,6 +1,6 @@
 login
-machine
-deleteacct
+agent
+deletacct
 1234567
 abc
 logout

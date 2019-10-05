@@ -1,5 +1,5 @@
 login
-machine
+agent
 deleteacct
 2234567
 abc

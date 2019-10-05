@@ -1,6 +1,0 @@
-login
-agent
-deleteacct
-12345678
-abc
-logout

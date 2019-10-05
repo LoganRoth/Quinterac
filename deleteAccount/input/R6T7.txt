@@ -3,4 +3,7 @@ agent
 deleteacct
 1234567
 abc
+deposit
+1234567
+1234
 logout

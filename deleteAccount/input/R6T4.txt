@@ -1,5 +1,5 @@
 login
-machine
+agent
 deleteacct
 1234567
 bbc
