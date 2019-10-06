@@ -1,0 +1,6 @@
+<tooShortFile.txt>
+login
+machine
+deposit
+987654
+logout

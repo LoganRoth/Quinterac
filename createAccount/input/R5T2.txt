@@ -1,0 +1,8 @@
+login
+agent
+createacct
+9876543
+Some Name
+withdraw
+9876543
+logout

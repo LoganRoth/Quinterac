@@ -1,0 +1,6 @@
+<zeroStartFile.txt>
+login
+machine
+deposit
+0987654
+logout

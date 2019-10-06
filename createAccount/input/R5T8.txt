@@ -1,0 +1,6 @@
+<acctWithAll1s.txt>
+login
+agent
+createacct
+1111111
+logout
