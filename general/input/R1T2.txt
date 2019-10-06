@@ -1,0 +1,9 @@
+login
+agent
+witdraw
+depst
+transfr
+createact
+deleteact
+logot
+logout
