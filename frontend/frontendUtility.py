@@ -9,6 +9,11 @@ class Modes():
 class Status():
     OK, ERROR, CANCEL, LOGOUT = range(4)
 
+
+class State():
+    START, IDLE, LOGIN, WITHDRAW, DEPOSIT, TRANSFER, CREATEACCT, DELETEACCT, LOGOUT, END = range(10)
+
+
 def requiredInput(prompt='Quinterac: ', toLower=True):
     noInput = True
     userInput = ''
@@ -87,3 +92,4 @@ def lookupCommandCode(command):
     else:
         print('Unrecognized command sent to code lookup. Command: {}'.format(command))
     return code
+    
