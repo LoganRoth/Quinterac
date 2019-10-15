@@ -28,6 +28,8 @@ def main(validAccts, summaryFile):
             prompt = 'Quinterac [Teller]: '
         elif session.mode == Modes.ATM:
             prompt = 'Quinterac [ATM]: '
+        else:
+            prompt = 'Quinterac: '
         command = ri(prompt=prompt)
         session.handleCommand(command)
              

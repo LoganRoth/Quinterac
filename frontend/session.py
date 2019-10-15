@@ -1,6 +1,7 @@
 from login import Login
 from frontendUtility import requiredInput as ri
-from frontendUtility import Modes
+from frontendUtility import writeToSummaryFile as wtsf
+from frontendUtility import Modes, RetCode
 
 class State():
     START, IDLE, LOGIN, WITHDRAW, DEPOSIT, TRANSFER, CREATEACCT, DELETEACCT, LOGOUT, END = range(10)
@@ -18,11 +19,13 @@ class Session():
         # this.transfer = Transfer()
         # this.createAcct = CreateAcct()
         # this.deleteAcct = DeleteAcct()
-        # this.logout = Logout()
     
     def handleCommand(this, command):
-        if this.state == State.START and (command != 'login' and command != 'logout' and command != '?' and command != 'help'):
+        if this.state == State.START and (command != 'login' and command != 'logout' and command != '?' and command != 'help' and command != 'off'):
             print('Cannot {} before logging in'.format(command))
+        elif command == 'off':
+            this.handleCommand('logout')
+            this.state = State.END
         elif command == 'login':
             if this.mode is None or this.mode == Modes.NA:
                 this.state = State.LOGIN
@@ -36,9 +39,9 @@ class Session():
                 print('Cannot login while already logged in, please logout first')
         elif command == 'logout':
             # logout
+            this.mode = Modes.NA
             this.state = State.LOGOUT
-            print('logout')
-            this.state = State.END
+            ret = wtsf(this.summaryFile, 'logout')
         elif command == 'withdraw':
             # withdraw
             print('withdraw')
