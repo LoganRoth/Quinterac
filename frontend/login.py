@@ -1,7 +1,9 @@
 from frontendUtility import requiredInput as ri
-from frontendUtility import Modes
+from frontendUtility import Modes, Status
 
 class Login():
+    def __init(this):
+        this.status = Status.OK
 
     def getMode(this):
         validMode = False
@@ -11,15 +13,19 @@ class Login():
             if mode == 'agent':
                 validMode = True
                 retMode = Modes.TELLER
+                this.status = Status.OK
             elif mode == 'machine':
                 validMode = True
                 retMode = Modes.ATM
+                this.status = Status.OK
             elif mode == 'cancel':
                 validMode = True
                 retMode = Modes.NA
+                this.status = Status.CANCEL
             elif mode == 'logout':
                 validMode = True
-                retMode = Modes.LOGOUT
+                retMode = Modes.NA
+                this.status = Status.LOGOUT
             else:
                 string = 'Please enter either agent or machine if you wish to continue\nIf you do not wish to continue, please enter either cancel or logout'
                 if mode != '?' and mode != 'help':

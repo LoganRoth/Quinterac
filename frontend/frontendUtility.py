@@ -3,23 +3,30 @@ class RetCode():
 
 
 class Modes():
-    NA, ATM, TELLER, LOGOUT = range(4)
+    NA, ATM, TELLER = range(3)
 
 
-def requiredInput(prompt='Quinterac: '):
+class Status():
+    OK, ERROR, CANCEL, LOGOUT = range(4)
+
+def requiredInput(prompt='Quinterac: ', toLower=True):
     noInput = True
     userInput = ''
     while noInput:
         userInput = input(prompt)
         if len(userInput) > 0:
             noInput = False
-    return userInput.lower()
+    if toLower:
+        userInput = userInput.lower().strip()
+    else:
+        userInput = userInput.strip()
+    return userInput
 
 def writeToSummaryFile(summaryFile, command, firstAcct='0000000', amount='0.00', secondAcct='0000000', acctName='***'):
     if command == 'logout':
         txMsg = 'EOS\n'
     else:
-        txMsg = formatTransactionMessage()
+        txMsg = formatTransactionMessage(command, firstAcct, amount, secondAcct, acctName)
     ret = RetCode.OK
     if txMsg is not None:
         try:
