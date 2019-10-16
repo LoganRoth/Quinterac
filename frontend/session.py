@@ -82,7 +82,7 @@ class Session():
             if withdraw.status == Status.LOGOUT:
                 this.handleCommand('logout')
             elif withdraw.status == Status.OK:
-                wtfs(this.summaryFile, command, firstAcct=depositAcct, amount=depositAmount)
+                wtsf(this.summaryFile, command, firstAcct=depositAcct, amount=depositAmount)
                 this.state = State.IDLE
         elif command == 'deposit':
             # deposit
@@ -95,7 +95,7 @@ class Session():
             if deposit.status == Status.LOGOUT:
                 this.handleCommand('logout')
             elif deposit.status == Status.OK:
-                wtfs(this.summaryFile, command, firstAcct=depositAcct, amount=depositAmount)
+                wtsf(this.summaryFile, command, firstAcct=depositAcct, amount=depositAmount)
                 this.state = State.IDLE
         elif command == 'transfer':
             # transfer
@@ -112,7 +112,7 @@ class Session():
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
             elif transfer.status == Status.OK:
-                wtfs(this.summaryFile, command, firstAcct=transferFromAcct, amount=transferAmount, secondAcct=transferToAcct)
+                wtsf(this.summaryFile, command, firstAcct=transferFromAcct, amount=transferAmount, secondAcct=transferToAcct)
                 this.state = State.IDLE
 
         elif command == 'createacct' and this.mode == Modes.TELLER:

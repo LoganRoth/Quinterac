@@ -34,7 +34,7 @@ class Deposit():
         depositTotal = 0 #need a way to determine the deposit total
         while not validNumber:
             numberString = ri('Enter a number to deposit in cents: ')
-            if numberString.isdigit == True:
+            if numberString.isdigit() == True:
                 number = int(numberString)
             else:
                 number = 0
@@ -44,7 +44,7 @@ class Deposit():
             elif numberString == "off":
                 this.status = Status.OFF
                 validNumber = True
-            elif numberString.isdigit == False:
+            elif numberString.isdigit() == False:
                 print("Please only enter digits")
             elif number > 200000 and this.mode == Modes.ATM:
                 print("Maximum deposit of "u'\xa2'"200000 per transaction in ATM mode")
