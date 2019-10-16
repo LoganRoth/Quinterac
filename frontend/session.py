@@ -37,10 +37,6 @@ class Session():
         # this.transfer = Transfer()
 
     def handleCommand(this, command):
-<<<<<<< HEAD
-        #shouldn't be able to logout when not logged in
-        if this.state == State.START and (command != 'login' and command != 'logout' and command != '?' and command != 'help' and command != 'off'):
-=======
         """
         Handles a given transaction command.
 
@@ -48,12 +44,13 @@ class Session():
         the session to "END".
         Commands of "?" and "help" can be used to prompt the user of possible valid options.
         """
-        if this.state == State.START and (command != 'login' and command != 'logout' and command != '?'
-                and command != 'help' and command != 'off'):
->>>>>>> fbb96066ed4b5a102865e96f7bab6c5343481699
+        if this.state == State.START and (command != 'login' and command != '?' and command != 'help'
+             and command != 'off'):
+            
             print('Cannot {} before logging in'.format(command))
         elif command == 'off':
             # off
+            this.state = State.IDLE
             this.handleCommand('logout')
             this.state = State.END
         elif command == 'login':
@@ -115,4 +112,4 @@ class Session():
             elif this.mode is not None and this.mode == Modes.TELLER:
                 print('Valid Commands: withdraw, deposit, transfer, createacct, deleteacct, logout, off')
             else:
-                print('Valid Commands: login, logout, off')
+                print('Valid Commands: login, off')
