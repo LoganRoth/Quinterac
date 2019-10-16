@@ -1,6 +1,8 @@
 from login import Login
 from createacct import CreateAcct
 from deleteacct import DeleteAcct
+from deposit import Deposit
+from withdraw import Withdraw
 from frontendUtility import requiredInput as ri
 from frontendUtility import writeToSummaryFile as wtsf
 from frontendUtility import Modes, RetCode, Status, State
@@ -16,8 +18,9 @@ class Session():
         # this.withdraw = Withdraw()
         # this.deposit = Deposit()
         # this.transfer = Transfer()
-    
+
     def handleCommand(this, command):
+        #shouldn't be able to logout when not logged in
         if this.state == State.START and (command != 'login' and command != 'logout' and command != '?' and command != 'help' and command != 'off'):
             print('Cannot {} before logging in'.format(command))
         elif command == 'off':
@@ -47,7 +50,9 @@ class Session():
             print('withdraw')
         elif command == 'deposit':
             # deposit
-            print('deposit')
+            deposit = Deposit()
+            this.state = State.DEPOSIT
+            depositAmount = deposit.getNumber()
         elif command == 'transfer':
             # transfer
             print('transfer')
@@ -82,5 +87,3 @@ class Session():
                 print('Valid Commands: withdraw, deposit, transfer, createacct, deleteacct, logout, off')
             else:
                 print('Valid Commands: login, logout, off')
-        
-        
