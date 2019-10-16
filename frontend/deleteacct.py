@@ -1,3 +1,8 @@
+"""
+deleteacct.py
+
+This file contains the class and all of its methods to handle the frontend steps to deleting an account.
+"""
 from frontendUtility import requiredInput as ri
 from frontendUtility import Status
 

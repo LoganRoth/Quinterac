@@ -1,15 +1,32 @@
+"""
+session.py
+
+This file is the the main control of the Quinterac banking system. All commands are handled here and the appropriate
+objects are created to handle the commands. Writing to the transaction summary file also occurs here.
+"""
 from login import Login
 from createacct import CreateAcct
 from deleteacct import DeleteAcct
 from frontendUtility import requiredInput as ri
 from frontendUtility import writeToSummaryFile as wtsf
-from frontendUtility import Modes, RetCode, Status, State
+from frontendUtility import Modes, RetCode, Status
+
+
+class State():
+    """
+    Class to represent the different possible states that any session can be in.
+    """
+    START, IDLE, LOGIN, WITHDRAW, DEPOSIT, TRANSFER, CREATEACCT, DELETEACCT, LOGOUT, END = range(10)
 
 
 class Session():
+    """
+    Class to handle a session of the Quinterac banking system. A valid accounts life file and a transaction summary
+    file must be given during initialization of an object of this class.
+    """
     def __init__(this, validAcctsFile, summaryFile):
         this.state = State.START
-        this.mode = None
+        this.mode = Modes.NA
         this.validAcctsFile = validAcctsFile
         this.validAcctsList = []
         this.summaryFile = summaryFile
@@ -18,7 +35,15 @@ class Session():
         # this.transfer = Transfer()
     
     def handleCommand(this, command):
-        if this.state == State.START and (command != 'login' and command != 'logout' and command != '?' and command != 'help' and command != 'off'):
+        """
+        Handles a given transaction command.
+
+        Off command was also created to shut down the program, this will cause a logout and then change the state of
+        the session to "END".
+        Commands of "?" and "help" can be used to prompt the user of possible valid options.
+        """
+        if this.state == State.START and (command != 'login' and command != 'logout' and command != '?'
+                and command != 'help' and command != 'off'):
             print('Cannot {} before logging in'.format(command))
         elif command == 'off':
             # off
@@ -26,7 +51,7 @@ class Session():
             this.state = State.END
         elif command == 'login':
             # login
-            if this.mode is None or this.mode == Modes.NA:
+            if this.mode == Modes.NA:
                 login = Login()
                 this.state = State.LOGIN
                 this.mode = login.getMode()
