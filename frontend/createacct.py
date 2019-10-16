@@ -1,7 +1,18 @@
+"""
+createacct.py
+
+This file contains the class and all of its methods to handle the frontend steps to creating a new account.
+"""
 from frontendUtility import requiredInput as ri
 from frontendUtility import Status
 
 class CreateAcct():
+    """
+    Class that handles the createacct command.
+    Requires a valid accounts list to be given during intialization.
+    This function does not modify the validAcctsList variable as the creation of a new account can only be validated
+    by the back office.
+    """
     def __init__(this, validAcctsList):
         this.validAcctsList = validAcctsList
         this.status = Status.OK
@@ -9,6 +20,11 @@ class CreateAcct():
         this.newAcctName = None
 
     def createNewAccount(this):
+        """
+        Gets the new account number and name.
+        If logout or cancel are given as the number or name then this will return and the status of this object will
+        indicate what caused the return.
+        """
         num = this._getNewAcctNum()
         if this.status != Status.OK:
             return
@@ -20,6 +36,13 @@ class CreateAcct():
 
 
     def _getNewAcctNum(this):
+        """
+        Gets the requested account number of the new account.
+        If logout or cancel is given as input this funciton will return and the status of this object will indicate
+        what caused the return.
+
+        Ensures that the given account number is in valid format as described by the requirements.
+        """
         validNum = False
         num = None
         while not validNum:
@@ -46,6 +69,13 @@ class CreateAcct():
         return num
 
     def _getNewAcctName(this):
+        """
+        Gets the requested account name of the new account.
+        If logout or cancel is given as input this funciton will return and the status of this object will indicate
+        what caused the return.
+
+        Ensures that the given account name is in valid format as described by the requirements.
+        """
         validName = False
         name = None
         while not validName:
