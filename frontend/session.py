@@ -9,6 +9,7 @@ from createacct import CreateAcct
 from deleteacct import DeleteAcct
 from deposit import Deposit
 from withdraw import Withdraw
+from transfer import Transfer
 from frontendUtility import requiredInput as ri
 from frontendUtility import writeToSummaryFile as wtsf
 from frontendUtility import Modes, RetCode, Status
@@ -78,11 +79,12 @@ class Session():
             withdrawAcct = withdraw.getAcct()
             if withdraw.status == Status.LOGOUT:
                 this.handleCommand('logout')
-            withdrawAmount = withdraw.getNumber()
+            if withdraw.status == Status.OK:
+                withdrawAmount = withdraw.getNumber()
             if withdraw.status == Status.LOGOUT:
                 this.handleCommand('logout')
             elif withdraw.status == Status.OK:
-                wtsf(this.summaryFile, command, firstAcct=depositAcct, amount=depositAmount)
+                wtsf(this.summaryFile, command, firstAcct=withdrawAcct, amount=withdrawAmount)
                 this.state = State.IDLE
         elif command == 'deposit':
             # deposit
@@ -91,7 +93,8 @@ class Session():
             depositAcct = deposit.getAcct()
             if deposit.status == Status.LOGOUT:
                 this.handleCommand('logout')
-            depositAmount = deposit.getNumber()
+            if deposit.status == Status.OK:
+                depositAmount = deposit.getNumber()
             if deposit.status == Status.LOGOUT:
                 this.handleCommand('logout')
             elif deposit.status == Status.OK:
@@ -99,16 +102,18 @@ class Session():
                 this.state = State.IDLE
         elif command == 'transfer':
             # transfer
-            transfer = Transfer()
+            transfer = Transfer(this.validAcctsList, this.mode)
             message = 'Input your account number: '
             transferFromAcct = transfer.getAcct(message)
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
-            transferAmount = transfer.getNumber()
+            if transfer.staus == Status.OK:
+                transferAmount = transfer.getNumber()
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
-            message = "Input the destination account number: "
-            transferToAcct = transfer.getAcct(message)
+            if transfer.status == Status.OK:
+                message = "Input the destination account number: "
+                transferToAcct = transfer.getAcct(message)
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
             elif transfer.status == Status.OK:

@@ -14,7 +14,7 @@ class Withdraw():
         validNum = False
         num = None
         while not validNum:
-            inNum = ri('Input the account number of account to deposit into: ')
+            inNum = ri('Input the account number of account to withdraw from: ')
             if inNum == 'logout':
                 this.status = Status.LOGOUT
                 validNum = True
@@ -31,7 +31,7 @@ class Withdraw():
         validNumber = False
         depositTotal = 0 #need a way to determine the deposit total
         while not validNumber:
-            numberString = ri('Enter a number to deposit in cents: ')
+            numberString = ri('Enter a number to withdraw in cents: ')
             if numberString.isdigit() == True:
                 number = int(numberString)
             else:
