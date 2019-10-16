@@ -37,6 +37,8 @@ class Session():
         # this.transfer = Transfer()
 
     def handleCommand(this, command):
+        #shouldn't be able to logout when not logged in
+        if this.state == State.START and (command != 'login' and command != 'logout' and command != '?' and command != 'help' and command != 'off'):
         """
         Handles a given transaction command.
 
@@ -44,13 +46,10 @@ class Session():
         the session to "END".
         Commands of "?" and "help" can be used to prompt the user of possible valid options.
         """
-        if this.state == State.START and (command != 'login' and command != '?' and command != 'help'
-             and command != 'off'):
-
+        if this.state == State.START and (command != 'login' and command != 'logout' and command != '?' and command != 'help' and command != 'off'):
             print('Cannot {} before logging in'.format(command))
         elif command == 'off':
             # off
-            this.state = State.IDLE
             this.handleCommand('logout')
             this.state = State.END
         elif command == 'login':
@@ -73,48 +72,17 @@ class Session():
             ret = wtsf(this.summaryFile, 'logout')
         elif command == 'withdraw':
             # withdraw
-            withdraw = Withdraw(this.validAcctsList, this.mode)
-            this.state = State.WITHDRAW
-            withdrawAcct = withdraw.getAcct()
-            if withdraw.status == Status.LOGOUT:
-                this.handleCommand('logout')
-            withdrawAmount = withdraw.getNumber()
-            if withdraw.status == Status.LOGOUT:
-                this.handleCommand('logout')
-            elif withdraw.status == Status.OK:
-                wtfs(this.summaryFile, command, firstAcct=depositAcct, amount=depositAmount)
-                this.state = State.IDLE
+            print('withdraw')
         elif command == 'deposit':
             # deposit
-            deposit = Deposit(this.validAcctsList, this.mode)
+            deposit = Deposit()
             this.state = State.DEPOSIT
-            depositAcct = deposit.getAcct()
-            if deposit.status == Status.LOGOUT:
-                this.handleCommand('logout')
             depositAmount = deposit.getNumber()
-            if deposit.status == Status.LOGOUT:
-                this.handleCommand('logout')
-            elif deposit.status == Status.OK:
-                wtfs(this.summaryFile, command, firstAcct=depositAcct, amount=depositAmount)
-                this.state = State.IDLE
+            #write the deposit into the transaction summary file
+            this.state = State.IDLE
         elif command == 'transfer':
             # transfer
-            transfer = Transfer()
-            message = 'Input your account number: '
-            transferFromAcct = transfer.getAcct(message)
-            if transfer.status == Status.LOGOUT:
-                this.handleCommand('logout')
-            transferAmount = transfer.getNumber()
-            if transfer.status == Status.LOGOUT:
-                this.handleCommand('logout')
-            message = "Input the destination account number: "
-            transferToAcct = transfer.getAcct(message)
-            if transfer.status == Status.LOGOUT:
-                this.handleCommand('logout')
-            elif transfer.status == Status.OK:
-                wtfs(this.summaryFile, command, firstAcct=transferFromAcct, amount=transferAmount, secondAcct=transferToAcct)
-                this.state = State.IDLE
-
+            print('transfer')
         elif command == 'createacct' and this.mode == Modes.TELLER:
             # createacct
             this.state = State.CREATEACCT
@@ -145,4 +113,4 @@ class Session():
             elif this.mode is not None and this.mode == Modes.TELLER:
                 print('Valid Commands: withdraw, deposit, transfer, createacct, deleteacct, logout, off')
             else:
-                print('Valid Commands: login, off')
+                print('Valid Commands: login, logout, off')
