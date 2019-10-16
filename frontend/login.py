@@ -1,11 +1,26 @@
+"""
+login.py
+
+This file contains the class and all of its methods to handle logging in to the Quinterac banking system.
+"""
 from frontendUtility import requiredInput as ri
 from frontendUtility import Modes, Status
 
 class Login():
+    """
+    Class that handles logging in.
+    If a cancel or logout is given as input while getting the mode, the classes status will indicate what has happened.
+    """
     def __init(this):
         this.status = Status.OK
 
     def getMode(this):
+        """
+        Function to ask get the requested banking system mode from the user.
+
+        Logout and cancel may also be given as input rather than completing the login.
+        Inputs of "?" and "help" can be used to prompt the user of possible valid options.
+        """
         validMode = False
         retMode = Modes.NA
         while not validMode:
@@ -34,6 +49,9 @@ class Login():
         return retMode
 
     def getValidAccts(this, validAcctsFile):
+        """
+        Function to get the list of valid accounts from the valid accounts list file.
+        """
         accts = []
         with open(validAcctsFile, 'r') as f:
             tempAccts = f.readlines()

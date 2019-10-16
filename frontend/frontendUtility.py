@@ -1,20 +1,39 @@
+"""
+frontendUtility.py
+
+This file contains classes and functions that are used throughout the rest of the files which make up the frontend.
+"""
 class RetCode():
+    """
+    Return code class to ensure that any function that reuturns a return code returns it in a standardized way.
+    """
     OK, ERROR, ABORTING = range(3)
 
 
 class Modes():
+    """
+    Class to represent the different modes that the system can be in. NA implies that it is in neither ATM or TELLER
+    mode which means that it is waiting to be logged in.
+    """
     NA, ATM, TELLER = range(3)
 
 
 class Status():
+    """
+    Class to represent the different possible statuses of an object. This helps to facilitate the ability to alaways
+    logout or cancel any command during its execution.
+    """
     OK, ERROR, CANCEL, LOGOUT = range(4)
 
 
-class State():
-    START, IDLE, LOGIN, WITHDRAW, DEPOSIT, TRANSFER, CREATEACCT, DELETEACCT, LOGOUT, END = range(10)
-
-
 def requiredInput(prompt='Quinterac: ', toLower=True):
+    """
+    Function to get input from the user and not allow empty input.
+    toLower variable can be used to change whether or not the user input is converted to all lowercase or not.
+
+    This function removes trailing and leading whitespace from the input and also by default will change the input to
+    all lowercase characters.
+    """
     noInput = True
     userInput = ''
     while noInput:
@@ -28,10 +47,10 @@ def requiredInput(prompt='Quinterac: ', toLower=True):
     return userInput
 
 def writeToSummaryFile(summaryFile, command, firstAcct='0000000', amount='0.00', secondAcct='0000000', acctName='***'):
-    if command == 'logout':
-        txMsg = 'EOS\n'
-    else:
-        txMsg = formatTransactionMessage(command, firstAcct, amount, secondAcct, acctName)
+    """
+    Function to write to the transaction summary file to ensure that the writing is performed in a standardized way.
+    """
+    txMsg = formatTransactionMessage(command, firstAcct, amount, secondAcct, acctName)
     ret = RetCode.OK
     if txMsg is not None:
         try:
@@ -45,15 +64,28 @@ def writeToSummaryFile(summaryFile, command, firstAcct='0000000', amount='0.00',
     return ret
             
 def formatTransactionMessage(command, firstAcct, amount, secondAcct, acctName):
+    """
+    Function to format the given transaction elements into the proper string format. If the amount or code are None then
+    the message will be nothing and will not write to the file as this can only occur if some error has occurred.
+    """
     code = lookupCommandCode(command)
     amount = formatAmountString(amount)
     if amount is None or code is None:
         txMsg = None
     else:
-        txMsg = '{} {} {} {} {}\n'.format(code, firstAcct, amount, secondAcct, acctName)
+        if command == 'logout':
+            txMsg = '{}\n'.format(code)
+        else:
+            txMsg = '{} {} {} {} {}\n'.format(code, firstAcct, amount, secondAcct, acctName)
     return txMsg
 
 def formatAmountString(amount):
+    """
+    Function to convert the given amount string into a proper currency format where there is exactly one decimal point,
+    at least one digit before the decimal point, and exactly two digits after the decimal point: #.##
+    Also ensures that if a string number is given as the input, that string number has only digit and decimals
+    characters.
+    """
     try:
         if not isinstance(amount, str):
             amount = '{:,.2f}'.format(amount)
@@ -78,6 +110,9 @@ def formatAmountString(amount):
     return amount
 
 def lookupCommandCode(command):
+    """
+    Function to look up the corresponding transaction code for each of the transaction commands.
+    """
     code = None
     if command == 'withdraw':
         code = 'WTH'
@@ -89,6 +124,8 @@ def lookupCommandCode(command):
         code = 'NEW'
     elif command == 'deleteacct':
         code = 'DEL'
+    elif command == 'logout':
+        code = 'EOS'
     else:
         print('Unrecognized command sent to code lookup. Command: {}'.format(command))
     return code

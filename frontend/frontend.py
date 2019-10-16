@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""
+frontend.py
+
+This is the actual executable python file that contains the main control loop for the Quinterac banking system.
+"""
 import sys
 import os
 import argparse
@@ -9,6 +14,9 @@ from frontendUtility import RetCode, Modes
 
 
 def areFilesValid(validAccts, summaryFile):
+    """
+    Checks if the given validAccts and summaryFile variables are actually valid files.
+    """
     if validAccts is None or not os.path.exists(validAccts):
         print('Valid accounts list file not found')
         return False
@@ -18,6 +26,12 @@ def areFilesValid(validAccts, summaryFile):
     return True
 
 def main(validAccts, summaryFile):
+    """
+    The main loop of the Quinterac banking system. Creates a session object and then passes commands to it from the
+    user input.
+    Commands at this level will only be the transaction commands, ie, login, logout, withdraw, etc. Not the
+    sub-commands such as the amount to withdraw/transfer/deposit or the login mode of agent or machine.
+    """
     if not areFilesValid(validAccts, summaryFile):
         return RetCode.ERROR
     terminalOn = True
@@ -36,6 +50,9 @@ def main(validAccts, summaryFile):
     return RetCode.OK
 
 def parseArgs():
+    """
+    Parses the arguments given to the script and returns the validAccts and summaryFile.
+    """
     parser = argparse.ArgumentParser(usage='frontend.py validAcctsList.txt summaryFile.txt')
     parser.add_argument(
         'validAccts',
