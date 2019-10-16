@@ -14,7 +14,7 @@ class Withdraw():
         validNum = False
         num = None
         while not validNum:
-            inNum = ri('Input the account number of account to deposit into: ')
+            inNum = ri('Input the account number of account to withdraw from: ')
             if inNum == 'logout':
                 this.status = Status.LOGOUT
                 validNum = True
@@ -31,8 +31,8 @@ class Withdraw():
         validNumber = False
         depositTotal = 0 #need a way to determine the deposit total
         while not validNumber:
-            numberString = ri('Enter a number to deposit in cents: ')
-            if numberString.isdigit == True:
+            numberString = ri('Enter a number to withdraw in cents: ')
+            if numberString.isdigit() == True:
                 number = int(numberString)
             else:
                 number = 0
@@ -42,7 +42,7 @@ class Withdraw():
             elif numberString == "off":
                 this.status = Status.OFF
                 validNumber = True
-            elif numberString.isdigit == False:
+            elif numberString.isdigit() == False:
                 print("Please only enter digits")
             elif number > 100000 and this.mode == Modes.ATM:
                 print("Maximum withdraw of "u'\xa2'"100000 per transaction in ATM mode")
