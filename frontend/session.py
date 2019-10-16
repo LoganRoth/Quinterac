@@ -107,7 +107,7 @@ class Session():
             transferFromAcct = transfer.getAcct(message)
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
-            if transfer.staus == Status.OK:
+            if transfer.status == Status.OK:
                 transferAmount = transfer.getNumber()
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
@@ -116,6 +116,8 @@ class Session():
                 transferToAcct = transfer.getAcct(message)
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
+            elif transferFromAcct == transferToAcct:
+                print("sorry cannot transfer to your own account")
             elif transfer.status == Status.OK:
                 wtsf(this.summaryFile, command, firstAcct=transferFromAcct, amount=transferAmount, secondAcct=transferToAcct)
                 this.state = State.IDLE
