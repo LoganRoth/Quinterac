@@ -10,7 +10,7 @@ class Transfer():
         this.acctNumber = None
         this.amount = None
     #accepts input and only returns given a valid account numberm or cancel or logout. Prints the passed message
-    def getAcct(this, text):
+    def __getAcct(this, text):
         validNum = False
         num = None
         while not validNum:
@@ -29,7 +29,7 @@ class Transfer():
         return num
 
     #returns a given number in cents only when entered in the correct format
-    def getNumber(this):
+    def __getNumber(this):
         validNumber = False
         #need a way to determine the transfer total for every account
         while not validNumber:
