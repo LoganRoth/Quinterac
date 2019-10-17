@@ -1,17 +1,21 @@
-'''
+"""
 withdraw.py
 
-This file contains the class and all its methods to withdraw money from an account
-'''
+This file contains the class and all of its methods to handle the frontend
+steps to withdraw from an account.
+"""
 from frontendUtility import requiredInput as ri
 from frontendUtility import Modes, Status
 
+
 class Withdraw():
-    '''
-    Class that handles withdraw from account
-    Requires a valid accounts list and the current mode of operation (machine or agent)
-    a successful withdrawal will result in the transaction going onto the transaction summary file
-    '''
+    """
+    Class that handles the withdraw command.
+
+    @param validAcctsList The dictionary the contains the list of valid
+                          accounts
+    @param mode The mode that the session is currently in
+    """
     def __init__(this, validAcctsList, mode):
         this.mode = mode
         this.validAcctsList = validAcctsList
@@ -20,55 +24,59 @@ class Withdraw():
         this.amount = None
 
     def getAcct(this):
-        '''
-        Asks for an account number and returns the account number if it is valid
-        Also finishes if the user attempts to logout or cancel
-        '''
+        """
+        Accepts input and only returns given a valid account numberm or None
+        """
         validNum = False
         num = None
         while not validNum:
-            inNum = ri('Input the account number of account to withdraw from: ')
-            if inNum == 'logout':
+            inNum = ri('Input the account number of account to withdraw '
+                       'from: ')
+            if inNum == 'logout' or inNum == 'off':
                 this.status = Status.LOGOUT
                 validNum = True
             elif inNum == 'cancel':
                 this.status = Status.CANCEL
                 validNum = True
-            elif not inNum in this.validAcctsList:
-                print('{} is not a valid account. Please enter a valid account'.format(inNum))
+            elif inNum not in this.validAcctsList:
+                print('{} is not a valid account. Please enter a valid '
+                      'account'.format(inNum))
             else:
                 validNum = True
+                this.acctNumber = inNum
                 num = inNum
         return num
 
     def getNumber(this):
-        '''
-        Asks for a number to withdraw in cents and returns the number if a valid amount is given
-        Also finishes if the user attampts to logout or cancel
-        '''
+        """
+        Returns a given number in cents only when entered in the correct format
+        """
         validNumber = False
-        #need a way to determine the withdrawal total for every account
+        # need a way to determine the withdrawal total for every account
         while not validNumber:
             numberString = ri('Enter a number to withdraw in cents: ')
-            if numberString.isdigit() == True:
+            if numberString.isdigit():
                 number = int(numberString)
             else:
                 number = 0
             if numberString == "cancel":
                 this.status = Status.CANCEL
                 validNumber = True
-            elif numberString == "off":
-                this.status = Status.OFF
+            elif numberString == "off" or numberString == "logout":
+                this.status = Status.LOGOUT
                 validNumber = True
-            elif numberString.isdigit() == False:
+            elif not numberString.isdigit():
                 print("Please only enter digits")
             elif number > 100000 and this.mode == Modes.ATM:
-                print("Maximum withdraw of "u'\xa2'"100000 per transaction in ATM mode")
+                print("Maximum withdraw of "u'\xa2'"100000 per transaction in "
+                      "ATM mode")
             elif number > 99999999 and this.mode == Modes.TELLER:
-                print("Maximum withdraw of "u'\xa2'"99999999 per transaction in Teller mode")
+                print("Maximum withdraw of "u'\xa2'"99999999 per transaction "
+                      "in Teller mode")
             elif number < 1:
                 print("Must withdraw at least 1 cent")
-            elif depositTotal > 500000 and this.mode == Modes.ATM:
+            elif (this.validAcctsList[this.acctNumber]['withdraw']
+                  + number) > 500000 and this.mode == Modes.ATM:
                 print("maximum withdrawal of "u'\xa2'"500000 a day")
             else:
                 validNumber = True

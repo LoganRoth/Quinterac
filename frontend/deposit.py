@@ -1,17 +1,21 @@
-'''
+"""
 deposit.py
 
-This file contains the class and all its methods to deposit into an account
-'''
+This file contains the class and all of its methods to handle the frontend
+steps to depositing to an account
+"""
 from frontendUtility import requiredInput as ri
 from frontendUtility import Modes, Status
 
+
 class Deposit():
-    '''
-    Class that handles deposits into an account
-    Requires a valid accounts list and the current mode of operation (machine or agent)
-    a successful deposit will result in the transaction going onto the transaction summary file
-    '''
+    """
+    Class that handles the deposit command.
+
+    @param validAcctsList The dictionary the contains the list of valid
+                          accounts
+    @param mode The mode that the session is currently in
+    """
     def __init__(this, validAcctsList, mode):
         this.mode = mode
         this.validAcctsList = validAcctsList
@@ -20,55 +24,58 @@ class Deposit():
         this.amount = None
 
     def getAcct(this):
-        '''
-        Asks for an account number and returns the account number if it is valid
-        Also finishes if the user attempts to logout or cancel
-        '''
+        """
+        Accepts input and only returns given a valid account number or None
+        """
         validNum = False
         num = None
         while not validNum:
             inNum = ri('Input the account number of account to deposit into: ')
-            if inNum == 'logout':
+            if inNum == 'logout' or inNum == 'off':
                 this.status = Status.LOGOUT
                 validNum = True
             elif inNum == 'cancel':
                 this.status = Status.CANCEL
                 validNum = True
-            elif not inNum in this.validAcctsList:
-                print('{} is not a valid account. Please enter a valid account'.format(inNum))
+            elif inNum not in this.validAcctsList.keys():
+                print('{} is not a valid account. Please enter a valid '
+                      'account'.format(inNum))
             else:
                 validNum = True
+                this.acctNumber = inNum
                 num = inNum
         return num
 
     def getNumber(this):
-        '''
-        Asks for a number to deposit in cents and returns the number if a valid amount is given
-        Also finishes if the user attampts to logout or cancel
-        '''
+        """
+        Returns a given number in cents only when entered in the correct format
+        """
         validNumber = False
-        #need a way to determine the deposit total for every account
+        # need a way to determine the deposit total for every account
         while not validNumber:
             numberString = ri('Enter a number to deposit in cents: ')
-            if numberString.isdigit() == True:
+            if numberString.isdigit():
                 number = int(numberString)
             else:
                 number = 0
             if numberString == "cancel":
                 this.status = Status.CANCEL
                 validNumber = True
-            elif numberString == "off":
-                this.status = Status.OFF
+            elif numberString == "off" or numberString == "logout":
+                this.status = Status.LOGOUT
                 validNumber = True
-            elif numberString.isdigit() == False:
+            elif not numberString.isdigit():
                 print("Please only enter digits")
             elif number > 200000 and this.mode == Modes.ATM:
-                print("Maximum deposit of "u'\xa2'"200000 per transaction in ATM mode")
+                print("Maximum deposit of "u'\xa2'"200000 per transaction in "
+                      "ATM mode")
             elif number > 99999999 and this.mode == Modes.TELLER:
-                print("Maximum deposit of "u'\xa2'"99999999 per transaction in Teller mode")
+                print("Maximum deposit of "u'\xa2'"99999999 per transaction in"
+                      " Teller mode")
             elif number < 1:
                 print("Must deposit at least 1 cent")
-            elif depositTotal > 500000 and this.mode == Modes.ATM:
+            elif (this.validAcctsList[this.acctNumber]['deposit']
+                  + number) > 500000 and this.mode == Modes.ATM:
                 print("maximum deposit of "u'\xa2'"500000 a day")
             else:
                 validNumber = True
