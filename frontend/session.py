@@ -1,8 +1,9 @@
 """
 session.py
 
-This file is the the main control of the Quinterac banking system. All commands are handled here and the appropriate
-objects are created to handle the commands. Writing to the transaction summary file also occurs here.
+This file is the the main control of the Quinterac banking system. All
+commands are handled here and the appropriate objects are created to handle
+the commands. Writing to the transaction summary file also occurs here.
 """
 from login import Login
 from createacct import CreateAcct
@@ -10,49 +11,53 @@ from deleteacct import DeleteAcct
 from deposit import Deposit
 from withdraw import Withdraw
 from transfer import Transfer
-from frontendUtility import requiredInput as ri
 from frontendUtility import writeToSummaryFile as wtsf
-from frontendUtility import Modes, RetCode, Status
+from frontendUtility import Modes, Status
 
 
 class State():
     """
-    Class to represent the different possible states that any session can be in.
+    Enumeration class to represent the different possible states that any
+    session can be in.
     """
-    START, IDLE, LOGIN, WITHDRAW, DEPOSIT, TRANSFER, CREATEACCT, DELETEACCT, LOGOUT, END = range(10)
+    START, IDLE, LOGIN, WITHDRAW, DEPOSIT, TRANSFER, CREATEACCT, DELETEACCT, \
+        LOGOUT, END = range(10)
 
 
 class Session():
     """
-    Class to handle a session of the Quinterac banking system. A valid accounts life file and a transaction summary
-    file must be given during initialization of an object of this class.
+    Class to handle a session of the Quinterac banking system. A valid
+    accounts life file and a transaction summary file must be given during
+    initialization of an object of this class.
+
+    @param validAcctsFile The file containing the valid accounts list
+    @param summaryFile The file to be used for the transaction summary record
     """
     def __init__(this, validAcctsFile, summaryFile):
         this.state = State.START
         this.mode = Modes.NA
         this.validAcctsFile = validAcctsFile
-        this.validAcctsList = []
+        this.validAcctsList = {}
         this.summaryFile = summaryFile
-        # this.withdraw = Withdraw()
-        # this.deposit = Deposit()
-        # this.transfer = Transfer()
 
     def handleCommand(this, command):
         """
         Handles a given transaction command.
 
-        Off command was also created to shut down the program, this will cause a logout and then change the state of
-        the session to "END".
-        Commands of "?" and "help" can be used to prompt the user of possible valid options.
-        """
-        if this.state == State.START and (command != 'login' and command != '?' and command != 'help'
-             and command != 'off'):
+        Off command was also created to shut down the program, this will cause
+        a logout and then change the state of the session to "END".
+        Commands of "?" and "help" can be used to prompt the user of possible
+        valid options.
 
+        @param command The transaction command that needs to be handled
+        """
+        if this.state == State.START and (command != 'login' and command != '?'
+           and command != 'help' and command != 'off'):
             print('Cannot {} before logging in'.format(command))
         elif command == 'off':
             # off
-            this.state = State.IDLE
-            this.handleCommand('logout')
+            if this.state != State.START:
+                this.handleCommand('logout')
             this.state = State.END
         elif command == 'login':
             # login
@@ -63,15 +68,18 @@ class Session():
                 if login.status == Status.LOGOUT:
                     this.handleCommand('logout')
                 else:
-                    this.validAcctsList = login.getValidAccts(this.validAcctsFile)
+                    this.validAcctsList = login.getValidAccts(
+                                                           this.validAcctsFile)
                     this.state = State.IDLE
             else:
-                print('Cannot login while already logged in, please logout first')
+                print('Cannot login while already logged in, please logout '
+                      'first')
         elif command == 'logout':
             # logout
             this.mode = Modes.NA
             this.state = State.LOGOUT
-            ret = wtsf(this.summaryFile, 'logout')
+            wtsf(this.summaryFile, 'logout')
+            this.state = State.END
         elif command == 'withdraw':
             # withdraw
             withdraw = Withdraw(this.validAcctsList, this.mode)
@@ -84,7 +92,10 @@ class Session():
             if withdraw.status == Status.LOGOUT:
                 this.handleCommand('logout')
             elif withdraw.status == Status.OK:
-                wtsf(this.summaryFile, command, firstAcct=withdrawAcct, amount=withdrawAmount)
+                this.validAcctsList[withdrawAcct]['withdraw']\
+                                                              += withdrawAmount
+                wtsf(this.summaryFile, command, firstAcct=withdrawAcct,
+                     amount=withdrawAmount)
                 this.state = State.IDLE
         elif command == 'deposit':
             # deposit
@@ -98,7 +109,9 @@ class Session():
             if deposit.status == Status.LOGOUT:
                 this.handleCommand('logout')
             elif deposit.status == Status.OK:
-                wtsf(this.summaryFile, command, firstAcct=depositAcct, amount=depositAmount)
+                this.validAcctsList[depositAcct]['deposit'] += depositAmount
+                wtsf(this.summaryFile, command, firstAcct=depositAcct,
+                     amount=depositAmount)
                 this.state = State.IDLE
         elif command == 'transfer':
             # transfer
@@ -108,7 +121,7 @@ class Session():
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
             if transfer.status == Status.OK:
-                transferAmount = transfer.getNumber()
+                transferAmount = transfer.getNumber(transferFromAcct)
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
             if transfer.status == Status.OK:
@@ -119,7 +132,10 @@ class Session():
             elif transferFromAcct == transferToAcct:
                 print("sorry cannot transfer to your own account")
             elif transfer.status == Status.OK:
-                wtsf(this.summaryFile, command, firstAcct=transferFromAcct, amount=transferAmount, secondAcct=transferToAcct)
+                this.validAcctsList[transferFromAcct]['transfer'] += \
+                                                                 transferAmount
+                wtsf(this.summaryFile, command, firstAcct=transferFromAcct,
+                     amount=transferAmount, secondAcct=transferToAcct)
                 this.state = State.IDLE
 
         elif command == 'createacct' and this.mode == Modes.TELLER:
@@ -130,26 +146,32 @@ class Session():
             if createAcct.status == Status.LOGOUT:
                 this.handleCommand('logout')
             elif createAcct.status == Status.OK:
-                wtsf(this.summaryFile, command, firstAcct=createAcct.newAcctNum, acctName=createAcct.newAcctName)
+                wtsf(this.summaryFile, command,
+                     firstAcct=createAcct.newAcctNum,
+                     acctName=createAcct.newAcctName)
                 this.state = State.IDLE
         elif command == 'deleteacct' and this.mode == Modes.TELLER:
             # deleteacct
             this.state = State.DELETEACCT
-            print(this.validAcctsList)
             deleteacct = DeleteAcct(this.validAcctsList)
             deleteacct.deleteOldAccount()
             if deleteacct.status == Status.LOGOUT:
                 this.handleCommand('logout')
             elif deleteacct.status == Status.OK:
-                wtsf(this.summaryFile, command, firstAcct=deleteacct.oldAcctNum, acctName=deleteacct.oldAcctName)
+                wtsf(this.summaryFile, command,
+                     firstAcct=deleteacct.oldAcctNum,
+                     acctName=deleteacct.oldAcctName)
                 this.state = State.IDLE
         else:
             # Helper prompts
             if command != '?' and command != 'help':
-                print('Unrecognized command: "{}", Please use a valid command string'.format(command))
+                print('Unrecognized command: "{}", Please use a valid command '
+                      'string'.format(command))
             if this.mode is not None and this.mode == Modes.ATM:
-                print('Valid Commands: withdraw, deposit, transfer, logout, off')
+                print('Valid Commands: withdraw, deposit, transfer, logout, '
+                      'off')
             elif this.mode is not None and this.mode == Modes.TELLER:
-                print('Valid Commands: withdraw, deposit, transfer, createacct, deleteacct, logout, off')
+                print('Valid Commands: withdraw, deposit, transfer, '
+                      'createaccct, deleteacct, logout, off')
             else:
                 print('Valid Commands: login, off')
