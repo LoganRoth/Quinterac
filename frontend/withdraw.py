@@ -10,7 +10,7 @@ class Withdraw():
         this.acctNumber = None
         this.amount = None
     #accepts input and only returns given a valid account numberm or cancel or logout
-    def getAcct(this):
+    def _getAcct(this):
         validNum = False
         num = None
         while not validNum:
@@ -29,7 +29,7 @@ class Withdraw():
         return num
 
     #returns a given number in cents only when entered in the correct format
-    def getNumber(this):
+    def _getNumber(this):
         validNumber = False
         #need a way to determine the withdrawal total for every account
         while not validNumber:
