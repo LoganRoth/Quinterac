@@ -9,8 +9,11 @@ class Withdraw():
         this.status = Status.OK
         this.acctNumber = None
         this.amount = None
-    #accepts input and only returns given a valid account numberm or cancel or logout
+
     def __getAcct(this):
+    '''
+    Accepts an account number and returns the number if the account existsx
+    '''
         validNum = False
         num = None
         while not validNum:
