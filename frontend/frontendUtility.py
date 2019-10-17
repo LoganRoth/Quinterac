@@ -46,7 +46,7 @@ def requiredInput(prompt='Quinterac: ', toLower=True):
         userInput = userInput.strip()
     return userInput
 
-def writeToSummaryFile(summaryFile, command, firstAcct='0000000', amount='0.00', secondAcct='0000000', acctName='***'):
+def writeToSummaryFile(summaryFile, command, firstAcct='0000000', amount='000', secondAcct='0000000', acctName='***'):
     """
     Function to write to the transaction summary file to ensure that the writing is performed in a standardized way.
     """
@@ -81,15 +81,16 @@ def formatTransactionMessage(command, firstAcct, amount, secondAcct, acctName):
 
 def formatAmountString(amount):
     """
-    Function to convert the given amount string into a proper currency format where there is exactly one decimal point,
-    at least one digit before the decimal point, and exactly two digits after the decimal point: #.##
-    Also ensures that if a string number is given as the input, that string number has only digit and decimals
-    characters.
+    Function to convert the given amount string into a cents format where there is no decimal point, at least 3 digits,
+    and at most 8 digits.
+    
+    Amount must be given as either cents or a currency format (ie, #.##).
+    Also ensures that the number given is converted to cents with at least 3 digits (ie, 1 is converted to 001).
     """
     try:
         if not isinstance(amount, str):
-            amount = '{:,.2f}'.format(amount)
-        elif '.' in amount:
+            amount = '{}'.format(amount)
+        if '.' in amount:
             dollars, cents = amount.split('.')
             if len(dollars) < 1:  # means amount is in form ".#" 
                 dollars = '0'
@@ -101,9 +102,15 @@ def formatAmountString(amount):
                 cents = cents[:2]
             elif len(amount.split('.')[-1]) == 1:  # means only one digit after ".", ie, 1.0
                 cents = '{}0'.format(cents)
-            amount = '{}.{}'.format(dollars, cents)
-        elif '.' not in amount: # means no decimal point in the string after ".", ie, 1
-            amount = '{}.00'.format(amount)
+            amount = '{}{}'.format(dollars, cents)
+        elif len(amount) < 3:
+            if len(amount) == 1:
+                amount = '00{}'.format(amount)  # if amount is single digit, need to add 2 leading 0s
+            elif len(amount) == 2:
+                amount = '0{}'.format(amount)  # if amount is two digits, need to add 1 leading 0s
+        if len(amount) > 8:
+            print('Amount too large: {} cents. Must be less than $999999.99.')
+            amount = None
     except ValueError as e:
         print('Failure when writing amount to summary file. Amount: {}'.format(amount))
         amount = None
