@@ -9,7 +9,7 @@ class Transfer():
         this.status = Status.OK
         this.acctNumber = None
         this.amount = None
-
+    #accepts input and only returns given a valid account numberm or cancel or logout. Prints the passed message
     def getAcct(this, text):
         validNum = False
         num = None
@@ -27,9 +27,11 @@ class Transfer():
                 validNum = True
                 num = inNum
         return num
+
+    #returns a given number in cents only when entered in the correct format
     def getNumber(this):
         validNumber = False
-        depositTotal = 0 #need a way to determine the deposit total
+        #need a way to determine the transfer total for every account
         while not validNumber:
             numberString = ri('Enter a number to deposit in cents: ')
             if numberString.isdigit() == True:
