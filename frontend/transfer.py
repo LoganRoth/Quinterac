@@ -1,16 +1,29 @@
+'''
+transfer.py
+
+This file contains the class and all its methods to transfer money between two accounts
+'''
 from frontendUtility import requiredInput as ri
 from frontendUtility import Modes, Status
 
 class Transfer():
-
+    '''
+    Class that handles transfer between accounts
+    Requires a valid accounts list and the current mode of operation (machine or agent)
+    a successful transfer will result in the transaction going onto the transaction summary file
+    '''
     def __init__(this, validAcctsList, mode):
         this.mode = mode
         this.validAcctsList = validAcctsList
         this.status = Status.OK
         this.acctNumber = None
         this.amount = None
-    #accepts input and only returns given a valid account numberm or cancel or logout. Prints the passed message
-    def __getAcct(this, text):
+
+    def getAcct(this, text):
+        '''
+        Asks for an account number and returns the account number if it is valid
+        Also finishes if the user attempts to logout or cancel
+        '''
         validNum = False
         num = None
         while not validNum:
@@ -28,8 +41,11 @@ class Transfer():
                 num = inNum
         return num
 
-    #returns a given number in cents only when entered in the correct format
-    def __getNumber(this):
+    def getNumber(this):
+        '''
+        Asks for a number to transfer in cents and returns the number if a valid amount is given
+        Also finishes if the user attampts to logout or cancel
+        '''
         validNumber = False
         #need a way to determine the transfer total for every account
         while not validNumber:

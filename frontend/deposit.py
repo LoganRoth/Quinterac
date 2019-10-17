@@ -1,16 +1,29 @@
+'''
+deposit.py
+
+This file contains the class and all its methods to deposit into an account
+'''
 from frontendUtility import requiredInput as ri
 from frontendUtility import Modes, Status
 
 class Deposit():
-
+    '''
+    Class that handles deposits into an account
+    Requires a valid accounts list and the current mode of operation (machine or agent)
+    a successful deposit will result in the transaction going onto the transaction summary file
+    '''
     def __init__(this, validAcctsList, mode):
         this.mode = mode
         this.validAcctsList = validAcctsList
         this.status = Status.OK
         this.acctNumber = None
         this.amount = None
-    #accepts input and only returns given a valid account numberm or cancel or logout
-    def __getAcct(this):
+
+    def getAcct(this):
+        '''
+        Asks for an account number and returns the account number if it is valid
+        Also finishes if the user attempts to logout or cancel
+        '''
         validNum = False
         num = None
         while not validNum:
@@ -27,8 +40,12 @@ class Deposit():
                 validNum = True
                 num = inNum
         return num
-    #returns a given number in cents only when entered in the correct format
-    def __getNumber(this):
+
+    def getNumber(this):
+        '''
+        Asks for a number to deposit in cents and returns the number if a valid amount is given
+        Also finishes if the user attampts to logout or cancel
+        '''
         validNumber = False
         #need a way to determine the deposit total for every account
         while not validNumber:

@@ -1,8 +1,17 @@
+'''
+withdraw.py
+
+This file contains the class and all its methods to withdraw money from an account
+'''
 from frontendUtility import requiredInput as ri
 from frontendUtility import Modes, Status
 
 class Withdraw():
-
+    '''
+    Class that handles withdraw from account
+    Requires a valid accounts list and the current mode of operation (machine or agent)
+    a successful withdrawal will result in the transaction going onto the transaction summary file
+    '''
     def __init__(this, validAcctsList, mode):
         this.mode = mode
         this.validAcctsList = validAcctsList
@@ -10,10 +19,11 @@ class Withdraw():
         this.acctNumber = None
         this.amount = None
 
-    def __getAcct(this):
-    '''
-    Accepts an account number and returns the number if the account existsx
-    '''
+    def getAcct(this):
+        '''
+        Asks for an account number and returns the account number if it is valid
+        Also finishes if the user attempts to logout or cancel
+        '''
         validNum = False
         num = None
         while not validNum:
@@ -31,8 +41,11 @@ class Withdraw():
                 num = inNum
         return num
 
-    #returns a given number in cents only when entered in the correct format
-    def __getNumber(this):
+    def getNumber(this):
+        '''
+        Asks for a number to withdraw in cents and returns the number if a valid amount is given
+        Also finishes if the user attampts to logout or cancel
+        '''
         validNumber = False
         #need a way to determine the withdrawal total for every account
         while not validNumber:
