@@ -4,8 +4,8 @@ withdraw.py
 This file contains the class and all of its methods to handle the frontend
 steps to withdraw from an account.
 """
-from frontendUtility import requiredInput as ri
-from frontendUtility import Modes, Status
+from frontend.frontendUtility import requiredInput as ri
+from frontend.frontendUtility import Modes, Status
 
 
 class Withdraw():

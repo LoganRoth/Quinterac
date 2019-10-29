@@ -4,8 +4,8 @@ createacct.py
 This file contains the class and all of its methods to handle the frontend
 steps to creating a new account.
 """
-from frontendUtility import requiredInput as ri
-from frontendUtility import Status
+from frontend.frontendUtility import requiredInput as ri
+from frontend.frontendUtility import Status
 
 
 class CreateAcct():
