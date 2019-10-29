@@ -1,4 +1,3 @@
-<acctWithAll1s.txt>
 login
 agent
 createacct
