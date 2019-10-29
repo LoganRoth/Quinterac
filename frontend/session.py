@@ -39,6 +39,7 @@ class Session():
         this.validAcctsFile = validAcctsFile
         this.validAcctsList = {}
         this.summaryFile = summaryFile
+        this.createAcct = CreateAcct()
 
     def handleCommand(this, command):
         """
@@ -70,6 +71,7 @@ class Session():
                 else:
                     this.validAcctsList = login.getValidAccts(
                                                            this.validAcctsFile)
+                    this.createAcct.updateValidAcctsList(this.validAcctsList)
                     this.state = State.IDLE
             else:
                 print('Cannot login while already logged in, please logout '
@@ -87,10 +89,12 @@ class Session():
             withdrawAcct = withdraw.getAcct()
             if withdraw.status == Status.LOGOUT:
                 this.handleCommand('logout')
+                return
             if withdraw.status == Status.OK:
                 withdrawAmount = withdraw.getNumber()
             if withdraw.status == Status.LOGOUT:
                 this.handleCommand('logout')
+                return
             elif withdraw.status == Status.OK:
                 this.validAcctsList[withdrawAcct]['withdraw']\
                                                               += withdrawAmount
@@ -104,10 +108,12 @@ class Session():
             depositAcct = deposit.getAcct()
             if deposit.status == Status.LOGOUT:
                 this.handleCommand('logout')
+                return
             if deposit.status == Status.OK:
                 depositAmount = deposit.getNumber()
             if deposit.status == Status.LOGOUT:
                 this.handleCommand('logout')
+                return
             elif deposit.status == Status.OK:
                 this.validAcctsList[depositAcct]['deposit'] += depositAmount
                 wtsf(this.summaryFile, command, firstAcct=depositAcct,
@@ -120,15 +126,18 @@ class Session():
             transferFromAcct = transfer.getAcct(message)
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
+                return
             if transfer.status == Status.OK:
                 transferAmount = transfer.getNumber(transferFromAcct)
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
+                return
             if transfer.status == Status.OK:
                 message = "Input the destination account number: "
                 transferToAcct = transfer.getAcct(message)
             if transfer.status == Status.LOGOUT:
                 this.handleCommand('logout')
+                return
             elif transferFromAcct == transferToAcct:
                 print("sorry cannot transfer to your own account")
             elif transfer.status == Status.OK:
@@ -141,14 +150,13 @@ class Session():
         elif command == 'createacct' and this.mode == Modes.TELLER:
             # createacct
             this.state = State.CREATEACCT
-            createAcct = CreateAcct(this.validAcctsList)
-            createAcct.createNewAccount()
-            if createAcct.status == Status.LOGOUT:
+            this.createAcct.createNewAccount()
+            if this.createAcct.status == Status.LOGOUT:
                 this.handleCommand('logout')
-            elif createAcct.status == Status.OK:
+            elif this.createAcct.status == Status.OK:
                 wtsf(this.summaryFile, command,
-                     firstAcct=createAcct.newAcctNum,
-                     acctName=createAcct.newAcctName)
+                     firstAcct=this.createAcct.newAcctNum,
+                     acctName=this.createAcct.newAcctName)
                 this.state = State.IDLE
         elif command == 'deleteacct' and this.mode == Modes.TELLER:
             # deleteacct
