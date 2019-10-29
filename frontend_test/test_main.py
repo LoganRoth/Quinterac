@@ -22,6 +22,20 @@ def test_r1t1(capsys):
     )
 
 
+def test_r1t2(capsys):
+    """
+    Testing r1t1. All required information stored in folder r1.
+
+    @param capsys Object created by pytest to capture stdout and stderr
+    """
+    helper(
+        capsys=capsys,
+        test_set='general',
+        accts_file='validAccountsList.txt',
+        test_id='R1T2'
+    )
+
+
 def helper(capsys, test_set, accts_file, test_id):
     """
     Helper function that test requirements for the frontend app
@@ -58,7 +72,7 @@ def helper(capsys, test_set, accts_file, test_id):
     # prepare program parameters
     sys.argv = [
         'app.py',
-        os.path.join(case_folder, 'testValidAccountsListFiles', accts_file),
+        os.path.join(path, 'testValidAccountsListFiles', accts_file),
         transaction_summary_file]
 
     # set terminal input
@@ -70,7 +84,7 @@ def helper(capsys, test_set, accts_file, test_id):
 
     # capture terminal output / errors
     # assuming that in this case we don't use stderr
-    # out, err = capsys.readouterr()
+    # _, _ = capsys.readouterr()
 
     # split terminal output in lines
     # out_lines = out.splitlines()
