@@ -164,7 +164,7 @@ def lookupCommandCode(command):
     """
     code = None
     if command == 'withdraw':
-        code = 'WTH'
+        code = 'WDR'
     elif command == 'deposit':
         code = 'DEP'
     elif command == 'transfer':
