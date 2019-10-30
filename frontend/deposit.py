@@ -76,7 +76,7 @@ class Deposit():
                 print("Must deposit at least 1 cent")
             elif (this.validAcctsList[this.acctNumber]['deposit']
                   + number) > 500000 and this.mode == Modes.ATM:
-                print("maximum deposit of "u'\xa2'"500000 a day")
+                print("Maximum deposit of "u'\xa2'"500000 a day")
             else:
                 validNumber = True
         return number
