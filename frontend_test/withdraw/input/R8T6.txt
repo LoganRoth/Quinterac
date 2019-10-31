@@ -1,7 +1,6 @@
 login
 machine
 withdraw
-1234567
+0123456
 1234
-0654321
 logout

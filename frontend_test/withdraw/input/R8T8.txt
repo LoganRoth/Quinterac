@@ -2,6 +2,5 @@ login
 agent
 withdraw
 1234567
-1000000.00
-7654321
+100000000
 logout
