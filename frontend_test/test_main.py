@@ -125,19 +125,201 @@ R3: Valid Accounts List File
 R4: Logout
 ============================================================================"""
 
+def test_r4t1(capsys):
+     """
+     Testing r4t1. All required information stored in folder r4.
 
-# def test_r4t1(capsys):
-#     """
-#     Testing r4t1. All required information stored in folder r4.
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T1'
+     )
+	 
+def test_r4t2(capsys):
+     """
+     Testing r4t2. All required information stored in folder r4.
 
-#     @param capsys Object created by pytest to capture stdout and stderr
-#     """
-#     helper(
-#         capsys=capsys,
-#         test_set='logout',
-#         accts_file='validAccountsList.txt',
-#         test_id='R4T1'
-#     )
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T2'
+     )
+	 
+def test_r4t3(capsys):
+     """
+     Testing r4t3. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T3'
+     )
+	 
+def test_r4t4(capsys):
+     """
+     Testing r4t4. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T4'
+     )
+	 
+def test_r4t5(capsys):
+     """
+     Testing r4t5. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T5'
+     )
+	 
+def test_r4t6(capsys):
+     """
+     Testing r4t6. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T6'
+     )
+	 
+def test_r4t7(capsys):
+     """
+     Testing r4t7. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T7'
+     )
+	 
+def test_r4t8(capsys):
+     """
+     Testing r4t8. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T8'
+     )
+	 
+def test_r4t9(capsys):
+     """
+     Testing r4t9. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T9'
+     )
+	 
+def test_r4t10(capsys):
+     """
+     Testing r4t10. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T10'
+     )
+	 
+def test_r4t11(capsys):
+     """
+     Testing r4t1. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T11'
+     )
+	 
+def test_r4t12(capsys):
+     """
+     Testing r4t12. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T12'
+     )
+	 
+def test_r4t13(capsys):
+     """
+     Testing r4t13. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T13'
+     )
+	 
+def test_r4t14(capsys):
+     """
+     Testing r4t14. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T14'
+     )
+	 
+def test_r4t15(capsys):
+     """
+     Testing r4t15. All required information stored in folder r4.
+
+     @param capsys Object created by pytest to capture stdout and stderr
+     """
+     helper(
+         capsys=capsys,
+         test_set='logout',
+         accts_file='validAccountsList.txt',
+         test_id='R4T15'
+     )
+
 
 
 """============================================================================
