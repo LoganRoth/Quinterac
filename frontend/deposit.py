@@ -4,8 +4,8 @@ deposit.py
 This file contains the class and all of its methods to handle the frontend
 steps to depositing to an account
 """
-from frontendUtility import requiredInput as ri
-from frontendUtility import Modes, Status
+from frontend.frontendUtility import requiredInput as ri
+from frontend.frontendUtility import Modes, Status
 
 
 class Deposit():
@@ -76,7 +76,7 @@ class Deposit():
                 print("Must deposit at least 1 cent")
             elif (this.validAcctsList[this.acctNumber]['deposit']
                   + number) > 500000 and this.mode == Modes.ATM:
-                print("maximum deposit of "u'\xa2'"500000 a day")
+                print("Maximum deposit of "u'\xa2'"500000 a day")
             else:
                 validNumber = True
         return number

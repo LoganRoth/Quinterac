@@ -1,0 +1,7 @@
+login
+Agent
+withdraw
+99999999
+withdraw
+99999999
+logout

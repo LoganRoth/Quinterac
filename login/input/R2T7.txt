@@ -1,6 +1,0 @@
-login
-agent
-logout
-login
-machine
-logout

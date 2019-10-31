@@ -4,8 +4,8 @@ createacct.py
 This file contains the class and all of its methods to handle the frontend
 steps to creating a new account.
 """
-from frontendUtility import requiredInput as ri
-from frontendUtility import Status
+from frontend.frontendUtility import requiredInput as ri
+from frontend.frontendUtility import Status
 
 
 class CreateAcct():
@@ -15,11 +15,15 @@ class CreateAcct():
     @param validAcctsList The dictionary the contains the list of valid
                           accounts
     """
-    def __init__(this, validAcctsList):
-        this.validAcctsList = validAcctsList
+    def __init__(this):
+        this.validAcctsList = None
         this.status = Status.OK
         this.newAcctNum = None
         this.newAcctName = None
+        this.createdAccts = []
+
+    def updateValidAcctsList(this, validAcctsList):
+        this.validAcctsList = validAcctsList
 
     def createNewAccount(this):
         """
@@ -36,6 +40,7 @@ class CreateAcct():
             return
         this.newAcctNum = num
         this.newAcctName = name
+        this.createdAccts.append(num)
 
     def __getNewAcctNum(this):
         """
@@ -69,6 +74,9 @@ class CreateAcct():
                 print('Account numbers must not begin with a "0". Please '
                       'choose a different account number.')
             elif inNum in this.validAcctsList.keys():
+                print('{} is already in use. Please choose a different account'
+                      ' number.'.format(inNum))
+            elif inNum in this.createdAccts:
                 print('{} is already in use. Please choose a different account'
                       ' number.'.format(inNum))
             else:
