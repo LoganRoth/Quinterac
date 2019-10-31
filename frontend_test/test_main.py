@@ -346,19 +346,102 @@ R6: Delete Account
 ============================================================================"""
 
 
-# def test_r4t1(capsys):
-#     """
-#     Testing r4t1. All required information stored in folder r4.
+def test_r6t1(capsys):
+    """
+    Testing r6t1. All required information stored in folder r4.
 
-#     @param capsys Object created by pytest to capture stdout and stderr
-#     """
-#     helper(
-#         capsys=capsys,
-#         test_set='logout',
-#         accts_file='validAccountsList.txt',
-#         test_id='R4T1'
-#     )
+    @param capsys Object created by pytest to capture stdout and stderr
+    """
+    helper(
+        capsys=capsys,
+        test_set='deleteAccount',
+        accts_file='validAccountsList.txt',
+        test_id='R6T1'
+    )
+def test_r6t2(capsys):
+    """
+    Testing r6t2. All required information stored in folder r4.
 
+    @param capsys Object created by pytest to capture stdout and stderr
+    """
+    helper(
+        capsys=capsys,
+        test_set='deleteAccount',
+        accts_file='validAccountsList.txt',
+        test_id='R6T2'
+    )
+def test_r6t3(capsys):
+    """
+    Testing r6t3. All required information stored in folder r4.
+
+    @param capsys Object created by pytest to capture stdout and stderr
+    """
+    helper(
+        capsys=capsys,
+        test_set='deleteAccount',
+        accts_file='validAccountsList.txt',
+        test_id='R6T3'
+    )
+def test_r6t4(capsys):
+    """
+    Testing r6t4. All required information stored in folder r4.
+
+    @param capsys Object created by pytest to capture stdout and stderr
+    """
+    helper(
+        capsys=capsys,
+        test_set='deleteAccount',
+        accts_file='validAccountsList.txt',
+        test_id='R6T4'
+    )
+def test_r6t5(capsys):
+    """
+    Testing r6t5. All required information stored in folder r4.
+
+    @param capsys Object created by pytest to capture stdout and stderr
+    """
+    helper(
+        capsys=capsys,
+        test_set='deleteAccount',
+        accts_file='validAccountsList.txt',
+        test_id='R6T5'
+    )
+def test_r6t6(capsys):
+    """
+    Testing r6t6. All required information stored in folder r4.
+
+    @param capsys Object created by pytest to capture stdout and stderr
+    """
+    helper(
+        capsys=capsys,
+        test_set='deleteAccount',
+        accts_file='validAccountsList.txt',
+        test_id='R6T6'
+    )
+def test_r6t7(capsys):
+    """
+    Testing r6t7. All required information stored in folder r4.
+
+    @param capsys Object created by pytest to capture stdout and stderr
+    """
+    helper(
+        capsys=capsys,
+        test_set='deleteAccount',
+        accts_file='validAccountsList.txt',
+        test_id='R6T7'
+    )
+def test_r6t8(capsys):
+    """
+    Testing r6t8. All required information stored in folder r4.
+
+    @param capsys Object created by pytest to capture stdout and stderr
+    """
+    helper(
+        capsys=capsys,
+        test_set='deleteAccount',
+        accts_file='validAccountsList.txt',
+        test_id='R6T8'
+    )
 
 """============================================================================
 R7: Deposit
@@ -808,7 +891,7 @@ def test_r9t1(capsys):
         accts_file='validAccountsList.txt',
         test_id='R9T1'
     )
-	
+
 def test_r9t2(capsys):
    """
    Testing r9t2. All required information stored in folder r9.
@@ -832,7 +915,7 @@ def test_r9t3(capsys):
        accts_file='validAccountsList.txt',
        test_id='R4T3'
     )
-	
+
 def test_r9t4(capsys):
    """
    Testing r9t4. All required information stored in folder r9.
@@ -963,7 +1046,7 @@ def test_r9t14(capsys):
        capsys=capsys,
        test_set='transfer',
        accts_file='validAccountsList.txt',
-       test_id='R4T14'
+       test_id='R9T14'
     )
 
 def test_r9t15(capsys):
