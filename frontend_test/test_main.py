@@ -348,7 +348,7 @@ R6: Delete Account
 
 def test_r6t1(capsys):
     """
-    Testing r6t1. All required information stored in folder r4.
+    Testing r6t1. All required information stored in folder r6.
 
     @param capsys Object created by pytest to capture stdout and stderr
     """
@@ -360,7 +360,7 @@ def test_r6t1(capsys):
     )
 def test_r6t2(capsys):
     """
-    Testing r6t2. All required information stored in folder r4.
+    Testing r6t2. All required information stored in folder r6.
 
     @param capsys Object created by pytest to capture stdout and stderr
     """
@@ -372,7 +372,7 @@ def test_r6t2(capsys):
     )
 def test_r6t3(capsys):
     """
-    Testing r6t3. All required information stored in folder r4.
+    Testing r6t3. All required information stored in folder r6.
 
     @param capsys Object created by pytest to capture stdout and stderr
     """
@@ -384,7 +384,7 @@ def test_r6t3(capsys):
     )
 def test_r6t4(capsys):
     """
-    Testing r6t4. All required information stored in folder r4.
+    Testing r6t4. All required information stored in folder r6.
 
     @param capsys Object created by pytest to capture stdout and stderr
     """
@@ -396,7 +396,7 @@ def test_r6t4(capsys):
     )
 def test_r6t5(capsys):
     """
-    Testing r6t5. All required information stored in folder r4.
+    Testing r6t5. All required information stored in folder r6.
 
     @param capsys Object created by pytest to capture stdout and stderr
     """
@@ -408,7 +408,7 @@ def test_r6t5(capsys):
     )
 def test_r6t6(capsys):
     """
-    Testing r6t6. All required information stored in folder r4.
+    Testing r6t6. All required information stored in folder r6.
 
     @param capsys Object created by pytest to capture stdout and stderr
     """
@@ -420,7 +420,7 @@ def test_r6t6(capsys):
     )
 def test_r6t7(capsys):
     """
-    Testing r6t7. All required information stored in folder r4.
+    Testing r6t7. All required information stored in folder r6.
 
     @param capsys Object created by pytest to capture stdout and stderr
     """
@@ -432,7 +432,7 @@ def test_r6t7(capsys):
     )
 def test_r6t8(capsys):
     """
-    Testing r6t8. All required information stored in folder r4.
+    Testing r6t8. All required information stored in folder r6.
 
     @param capsys Object created by pytest to capture stdout and stderr
     """
@@ -901,7 +901,7 @@ def test_r9t2(capsys):
        capsys=capsys,
        test_set='transfer',
        accts_file='validAccountsList.txt',
-       test_id='R4T2'
+       test_id='R9T2'
     )
 
 def test_r9t3(capsys):
@@ -913,7 +913,7 @@ def test_r9t3(capsys):
        capsys=capsys,
        test_set='transfer',
        accts_file='validAccountsList.txt',
-       test_id='R4T3'
+       test_id='R9T3'
     )
 
 def test_r9t4(capsys):
@@ -925,7 +925,7 @@ def test_r9t4(capsys):
        capsys=capsys,
        test_set='transfer',
        accts_file='validAccountsList.txt',
-       test_id='R4T4'
+       test_id='R9T4'
     )
 
 
@@ -938,7 +938,7 @@ def test_r9t5(capsys):
        capsys=capsys,
        test_set='transfer',
        accts_file='validAccountsList.txt',
-       test_id='R4T5'
+       test_id='R9T5'
     )
 
 def test_r9t6(capsys):
@@ -950,7 +950,7 @@ def test_r9t6(capsys):
        capsys=capsys,
        test_set='transfer',
        accts_file='validAccountsList.txt',
-       test_id='R4T6'
+       test_id='R9T6'
     )
 
 def test_r9t7(capsys):
@@ -962,7 +962,7 @@ def test_r9t7(capsys):
        capsys=capsys,
        test_set='transfer',
        accts_file='validAccountsList.txt',
-       test_id='R4T7'
+       test_id='R9T7'
     )
 
 def test_r9t8(capsys):
