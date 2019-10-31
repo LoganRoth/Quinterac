@@ -1,2 +1,0 @@
-ERR
-“You can’t create an account before you are logged in”

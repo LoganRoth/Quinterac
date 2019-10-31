@@ -1,2 +1,0 @@
-ERR
-"You can't transfer once logged out"
