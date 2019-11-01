@@ -1,4 +1,3 @@
-<noSpecialFile.txt>
 login
 machine
 logout

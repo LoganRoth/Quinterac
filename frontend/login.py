@@ -4,6 +4,8 @@ login.py
 This file contains the class and all of its methods to handle logging in to
 the Quinterac banking system.
 """
+import os
+
 from frontend.frontendUtility import requiredInput as ri
 from frontend.frontendUtility import Modes, Status
 
@@ -65,7 +67,7 @@ class Login():
             tempAccts = f.readlines()
             if '0000000\n' not in tempAccts:
                 print('Error processing {}, no special end account '
-                      '"0000000"'.format(validAcctsFile))
+                      '"0000000"'.format(os.path.basename(validAcctsFile)))
             else:
                 for acct in tempAccts:
                     acct = acct.replace('\n', '')
@@ -76,5 +78,6 @@ class Login():
                                        'transfer': 0, }
                     else:
                         print('Some accounts in {} are not in valid '
-                              'format'.format(validAcctsFile))
+                              'format'.format(
+                                             os.path.basename(validAcctsFile)))
         return accts

@@ -1,4 +1,3 @@
-<acctsAfterSpecial.txt>
 login
 machine
 deposit

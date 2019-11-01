@@ -1,4 +1,3 @@
-<zeroStartFile.txt>
 login
 machine
 deposit

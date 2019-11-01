@@ -1,4 +1,3 @@
-<tooShortFile.txt>
 login
 machine
 deposit

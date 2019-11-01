@@ -1,4 +1,3 @@
-<nonDigitFile.txt>
 login
 machine
 deposit
