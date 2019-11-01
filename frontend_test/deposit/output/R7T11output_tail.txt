@@ -1,0 +1,2 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [Teller]: Input the account number of account to deposit into: Enter a number to deposit in cents: Must deposit at least 1 cent
+Enter a number to deposit in cents: 

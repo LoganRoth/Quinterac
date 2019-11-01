@@ -1,0 +1,2 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [ATM]: Input the account number of account to deposit into: Enter a number to deposit in cents: Maximum deposit of ¢200000 per transaction in ATM mode
+Enter a number to deposit in cents: 

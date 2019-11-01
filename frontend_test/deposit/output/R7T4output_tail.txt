@@ -1,0 +1,5 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [ATM]: Input the account number of account to deposit into: Enter a number to deposit in cents: Quinterac [ATM]: Input the account number of account to deposit into: Enter a number to deposit in cents: Quinterac [ATM]: Unrecognized command: "1234567", Please use a valid command string
+Valid Commands: withdraw, deposit, transfer, logout, off
+Quinterac [ATM]: Unrecognized command: "100300", Please use a valid command string
+Valid Commands: withdraw, deposit, transfer, logout, off
+Quinterac [ATM]: 

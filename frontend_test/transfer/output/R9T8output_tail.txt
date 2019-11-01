@@ -1,0 +1,2 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [ATM]: Input your account number: Enter a number to deposit in cents: Input the destination account number: sorry cannot transfer to your own account
+Quinterac [ATM]: 
