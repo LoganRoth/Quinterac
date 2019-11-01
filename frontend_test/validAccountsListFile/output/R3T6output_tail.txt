@@ -1,0 +1,3 @@
+Quinterac: Cannot <nospecialfile.txt> before logging in
+Quinterac: Enter the desired mode [agent or machine]: Error processing /Users/loganroth/QuinteracPrestigeWorldwide/frontend_test/testValidAccountsListFiles/noSpecialFile.txt, no special end account "0000000"
+Quinterac [ATM]: 

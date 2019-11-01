@@ -1,0 +1,2 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [Teller]: Input the account number of account to withdraw from: Enter a number to withdraw in cents: Maximum withdraw of ¢99999999 per transaction in Teller mode
+Enter a number to withdraw in cents: 

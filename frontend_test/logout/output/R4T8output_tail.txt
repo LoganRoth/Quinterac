@@ -1,0 +1,2 @@
+Quinterac: Cannot withdraw before logging in
+Quinterac: 

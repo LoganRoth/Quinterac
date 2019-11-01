@@ -1,0 +1,2 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [Teller]: Cannot login while already logged in, please logout first
+Quinterac [Teller]: 

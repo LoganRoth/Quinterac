@@ -1,0 +1,9 @@
+Quinterac: Enter the desired mode [agent or machine]: Unrecognized mode "machine transfer". Please enter either agent or machine if you wish to continue
+If you do not wish to continue, please enter either cancel or logout
+Enter the desired mode [agent or machine]: Unrecognized mode "1234567". Please enter either agent or machine if you wish to continue
+If you do not wish to continue, please enter either cancel or logout
+Enter the desired mode [agent or machine]: Unrecognized mode "1234". Please enter either agent or machine if you wish to continue
+If you do not wish to continue, please enter either cancel or logout
+Enter the desired mode [agent or machine]: Unrecognized mode "0654321". Please enter either agent or machine if you wish to continue
+If you do not wish to continue, please enter either cancel or logout
+Enter the desired mode [agent or machine]: 

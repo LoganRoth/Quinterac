@@ -1,0 +1,1 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [Teller]: Input the account number of account to delete: Input the account name of account to delete: Quinterac [Teller]: 

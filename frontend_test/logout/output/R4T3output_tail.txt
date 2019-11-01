@@ -1,0 +1,2 @@
+Quinterac: Cannot logout before logging in
+Quinterac: 

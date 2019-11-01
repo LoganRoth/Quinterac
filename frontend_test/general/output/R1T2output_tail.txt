@@ -1,0 +1,13 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [Teller]: Unrecognized command: "witdraw", Please use a valid command string
+Valid Commands: withdraw, deposit, transfer, createaccct, deleteacct, logout, off
+Quinterac [Teller]: Unrecognized command: "depst", Please use a valid command string
+Valid Commands: withdraw, deposit, transfer, createaccct, deleteacct, logout, off
+Quinterac [Teller]: Unrecognized command: "transfr", Please use a valid command string
+Valid Commands: withdraw, deposit, transfer, createaccct, deleteacct, logout, off
+Quinterac [Teller]: Unrecognized command: "createact", Please use a valid command string
+Valid Commands: withdraw, deposit, transfer, createaccct, deleteacct, logout, off
+Quinterac [Teller]: Unrecognized command: "deleteact", Please use a valid command string
+Valid Commands: withdraw, deposit, transfer, createaccct, deleteacct, logout, off
+Quinterac [Teller]: Unrecognized command: "logot", Please use a valid command string
+Valid Commands: withdraw, deposit, transfer, createaccct, deleteacct, logout, off
+Quinterac [Teller]: 
