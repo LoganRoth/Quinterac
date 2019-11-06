@@ -1,0 +1,2 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [Teller]: Input the account number for the new account: Input the account name for the new account: Account names must only contain alphanumeric characters and spaces. Please choose a different account name.
+Input the account name for the new account: 

@@ -1,6 +1,0 @@
-<acctsAfterSpecial.txt>
-login
-machine
-deposit
-9876543
-logout

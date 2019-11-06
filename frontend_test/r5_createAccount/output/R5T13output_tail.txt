@@ -1,0 +1,1 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [Teller]: Input the account number for the new account: Input the account name for the new account: Quinterac [Teller]: 

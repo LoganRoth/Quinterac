@@ -1,0 +1,2 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [ATM]: Input the account number of account to deposit into: 9876543 is not a valid account. Please enter a valid account
+Input the account number of account to deposit into: 

@@ -1,0 +1,3 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [ATM]: Input the account number of account to withdraw from: Enter a number to withdraw in cents: Quinterac [ATM]: Unrecognized command: "7654321", Please use a valid command string
+Valid Commands: withdraw, deposit, transfer, logout, off
+Quinterac [ATM]: 

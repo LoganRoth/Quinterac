@@ -1,6 +1,0 @@
-<tooLongFile.txt>
-login
-machine
-deposit
-98765432
-logout

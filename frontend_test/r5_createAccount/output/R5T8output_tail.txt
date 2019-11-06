@@ -1,0 +1,2 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [Teller]: Input the account number for the new account: 1111111 is already in use. Please choose a different account number.
+Input the account number for the new account: 

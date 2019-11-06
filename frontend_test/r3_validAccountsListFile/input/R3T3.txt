@@ -1,0 +1,5 @@
+login
+machine
+deposit
+987654a
+logout

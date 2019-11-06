@@ -1,0 +1,1 @@
+Quinterac: Enter the desired mode [agent or machine]: Quinterac [ATM]: 
