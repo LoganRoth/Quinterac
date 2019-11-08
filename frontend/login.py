@@ -10,16 +10,16 @@ from frontend.frontendUtility import requiredInput as ri
 from frontend.frontendUtility import Modes, Status
 
 
-class Login():
+class Login:
     """
     Class that handles logging in.
     If a cancel or logout is given as input while getting the mode, the
     classes status will indicate what has happened.
     """
-    def __init(this):
-        this.status = Status.OK
+    def __init(self):
+        self.status = Status.OK
 
-    def getMode(this):
+    def getMode(self):
         """
         Function to ask get the requested banking system mode from the user.
 
@@ -35,29 +35,29 @@ class Login():
             if mode == 'agent':
                 validMode = True
                 retMode = Modes.TELLER
-                this.status = Status.OK
+                self.status = Status.OK
             elif mode == 'machine':
                 validMode = True
                 retMode = Modes.ATM
-                this.status = Status.OK
+                self.status = Status.OK
             elif mode == 'cancel':
                 validMode = True
                 retMode = Modes.NA
-                this.status = Status.CANCEL
+                self.status = Status.CANCEL
             elif mode == 'logout':
                 validMode = True
                 retMode = Modes.NA
-                this.status = Status.LOGOUT
+                self.status = Status.LOGOUT
             else:
-                string = 'Please enter either agent or machine if you wish to '\
-                         'continue\nIf you do not wish to continue, please '\
+                string = 'Please enter either agent or machine if you wish to'\
+                         ' continue\nIf you do not wish to continue, please '\
                          'enter either cancel or logout'
                 if mode != '?' and mode != 'help':
                     string = 'Unrecognized mode "{}". {}'.format(mode, string)
                 print(string)
         return retMode
 
-    def getValidAccts(this, validAcctsFile):
+    def getValidAccts(self, validAcctsFile):
         """
         Function to get the list of valid accounts from the valid accounts
         list file.

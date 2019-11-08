@@ -4,17 +4,10 @@ frontendUtility.py
 This file contains classes and functions that are used throughout the rest of
 the files which make up the frontend.
 """
+from utility.utility import RetCode
 
 
-class RetCode():
-    """
-    Enum class for return codes to ensure that any function that reuturns a
-    return code returns it in a standardized way.
-    """
-    OK, ERROR, ABORTING = range(3)
-
-
-class Modes():
+class Modes:
     """
     Enum class to represent the different modes that the system can be in.
     NA implies that it is in neither ATM or TELLER mode which means that
@@ -23,7 +16,7 @@ class Modes():
     NA, ATM, TELLER = range(3)
 
 
-class Status():
+class Status:
     """
     Enum class to represent the different possible statuses of an object.
     This helps to facilitate the ability to alaways logout or cancel any

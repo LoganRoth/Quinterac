@@ -8,20 +8,20 @@ from frontend.frontendUtility import requiredInput as ri
 from frontend.frontendUtility import Status
 
 
-class DeleteAcct():
+class DeleteAcct:
     """
     Class that handles the deleteacct command.
 
     @param validAcctsList The dictionary the contains the list of valid
                           accounts
     """
-    def __init__(this, validAcctsList):
-        this.validAcctsList = validAcctsList
-        this.status = Status.OK
-        this.oldAcctNum = None
-        this.oldAcctName = None
+    def __init__(self, validAcctsList):
+        self.validAcctsList = validAcctsList
+        self.status = Status.OK
+        self.oldAcctNum = None
+        self.oldAcctName = None
 
-    def deleteOldAccount(this):
+    def deleteOldAccount(self):
         """
         Gets the account to delete and the name of the account as well as
         removes the deleted account from the current list of valid accounts,
@@ -32,21 +32,21 @@ class DeleteAcct():
         return and the status of this object will indicate what caused the
         return.
         """
-        num = this.__getOldAcctNum()
-        if this.status != Status.OK:
+        num = self.__getOldAcctNum()
+        if self.status != Status.OK:
             return
-        name = this.__getOldAcctName()
-        if this.status != Status.OK:
+        name = self.__getOldAcctName()
+        if self.status != Status.OK:
             return
-        this.oldAcctNum = num
-        this.oldAcctName = name
+        self.oldAcctNum = num
+        self.oldAcctName = name
         try:
-            del this.validAcctsList[num]
+            del self.validAcctsList[num]
         except ValueError:
             print('Account given was not found in the valid list. Account: '
                   '{}'.format(num))
 
-    def __getOldAcctNum(this):
+    def __getOldAcctNum(self):
         """
         Gets the account number of the account to delete.
         If logout or cancel is given as input this funciton will return and
@@ -60,12 +60,12 @@ class DeleteAcct():
         while not validNum:
             inNum = ri('Input the account number of account to delete: ')
             if inNum == 'logout' or inNum == 'off':
-                this.status = Status.LOGOUT
+                self.status = Status.LOGOUT
                 validNum = True
             elif inNum == 'cancel':
-                this.status = Status.CANCEL
+                self.status = Status.CANCEL
                 validNum = True
-            elif inNum not in this.validAcctsList.keys():
+            elif inNum not in self.validAcctsList.keys():
                 print('{} is not a valid account. Please enter a valid '
                       'account'.format(inNum))
             else:
@@ -73,7 +73,7 @@ class DeleteAcct():
                 num = inNum
         return num
 
-    def __getOldAcctName(this):
+    def __getOldAcctName(self):
         """
         Gets the account name of the account to delete.
         If logout or cancel is given as input this funciton will return and
@@ -89,10 +89,10 @@ class DeleteAcct():
             inName = ri('Input the account name of account to delete: ',
                         toLower=False)
             if inName == 'logout' or inName == 'off':
-                this.status = Status.LOGOUT
+                self.status = Status.LOGOUT
                 validName = True
             elif inName == 'cancel':
-                this.status = Status.CANCEL
+                self.status = Status.CANCEL
                 validName = True
             elif len(inName) < 3 or len(inName) > 30:
                 print('Account names must be between 3 and 30 characters. '
