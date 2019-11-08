@@ -4,7 +4,6 @@ masterAccountsFile.py
 This file contains the class and all of its methods to handle updating the
 Master Accounts File and writing the new Valid Accounts List File.
 """
-from backoffice.account import Account
 from utility.utility import RetCode
 
 
@@ -30,9 +29,15 @@ class MasterAccountsFile:
         with open(self.file, 'r') as f:
             accts = f.readlines()
         for acctStr in accts:
-            acct = Account(acctStr)
-            self.masterAccts[acct.num] = {'Name': acct.name,
-                                          'Balance': acct.balance}
+            try:
+                splitStr = acctStr.split()
+                num = splitStr[0]
+                balance = int(splitStr[1])
+                name = ' '.join(splitStr[2:])
+                self.masterAccts[num] = {'Name': name,
+                                         'Balance': balance}
+            except (ValueError, IndexError):
+                print('Account in invalid format: {}'.format(acctStr))
 
     def updateMAF(self, transactions):
         """
@@ -56,7 +61,7 @@ class MasterAccountsFile:
             acctNumList = sorted(self.masterAccts.keys())
             for acct in acctNumList:
                 formattedStr = self.__formatAccount(acct)
-                if str is not None:
+                if formattedStr is not None:
                     f.write(formattedStr)
 
     def writeNewValidAccountsListFile(self):
