@@ -24,7 +24,7 @@ class State():
         LOGOUT, END = range(10)
 
 
-class Session():
+class Session:
     """
     Class to handle a session of the Quinterac banking system. A valid
     accounts life file and a transaction summary file must be given during
@@ -33,15 +33,15 @@ class Session():
     @param validAcctsFile The file containing the valid accounts list
     @param summaryFile The file to be used for the transaction summary record
     """
-    def __init__(this, validAcctsFile, summaryFile):
-        this.state = State.START
-        this.mode = Modes.NA
-        this.validAcctsFile = validAcctsFile
-        this.validAcctsList = {}
-        this.summaryFile = summaryFile
-        this.createAcct = CreateAcct()
+    def __init__(self, validAcctsFile, summaryFile):
+        self.state = State.START
+        self.mode = Modes.NA
+        self.validAcctsFile = validAcctsFile
+        self.validAcctsList = {}
+        self.summaryFile = summaryFile
+        self.createAcct = CreateAcct()
 
-    def handleCommand(this, command):
+    def handleCommand(self, command):
         """
         Handles a given transaction command.
 
@@ -52,133 +52,133 @@ class Session():
 
         @param command The transaction command that needs to be handled
         """
-        if this.state == State.START and (command != 'login' and command != '?'
+        if self.state == State.START and (command != 'login' and command != '?'
            and command != 'help' and command != 'off'):
             print('Cannot {} before logging in'.format(command))
         elif command == 'off':
             # off
-            if this.state != State.START:
-                this.handleCommand('logout')
-            this.state = State.END
+            if self.state != State.START:
+                self.handleCommand('logout')
+            self.state = State.END
         elif command == 'login':
             # login
-            if this.mode == Modes.NA:
+            if self.mode == Modes.NA:
                 login = Login()
-                this.state = State.LOGIN
-                this.mode = login.getMode()
+                self.state = State.LOGIN
+                self.mode = login.getMode()
                 if login.status == Status.LOGOUT:
-                    this.handleCommand('logout')
+                    self.handleCommand('logout')
                 else:
-                    this.validAcctsList = login.getValidAccts(
-                                                           this.validAcctsFile)
-                    this.createAcct.updateValidAcctsList(this.validAcctsList)
-                    this.state = State.IDLE
+                    self.validAcctsList = login.getValidAccts(
+                                                           self.validAcctsFile)
+                    self.createAcct.updateValidAcctsList(self.validAcctsList)
+                    self.state = State.IDLE
             else:
                 print('Cannot login while already logged in, please logout '
                       'first')
         elif command == 'logout':
             # logout
-            this.mode = Modes.NA
-            this.state = State.LOGOUT
-            wtsf(this.summaryFile, 'logout')
-            this.state = State.END
+            self.mode = Modes.NA
+            self.state = State.LOGOUT
+            wtsf(self.summaryFile, 'logout')
+            self.state = State.END
         elif command == 'withdraw':
             # withdraw
-            withdraw = Withdraw(this.validAcctsList, this.mode)
-            this.state = State.WITHDRAW
+            withdraw = Withdraw(self.validAcctsList, self.mode)
+            self.state = State.WITHDRAW
             withdrawAcct = withdraw.getAcct()
             if withdraw.status == Status.LOGOUT:
-                this.handleCommand('logout')
+                self.handleCommand('logout')
                 return
             if withdraw.status == Status.OK:
                 withdrawAmount = withdraw.getNumber()
             if withdraw.status == Status.LOGOUT:
-                this.handleCommand('logout')
+                self.handleCommand('logout')
                 return
             elif withdraw.status == Status.OK:
-                this.validAcctsList[withdrawAcct]['withdraw']\
+                self.validAcctsList[withdrawAcct]['withdraw']\
                                                               += withdrawAmount
-                wtsf(this.summaryFile, command, firstAcct=withdrawAcct,
+                wtsf(self.summaryFile, command, firstAcct=withdrawAcct,
                      amount=withdrawAmount)
-                this.state = State.IDLE
+                self.state = State.IDLE
         elif command == 'deposit':
             # deposit
-            deposit = Deposit(this.validAcctsList, this.mode)
-            this.state = State.DEPOSIT
+            deposit = Deposit(self.validAcctsList, self.mode)
+            self.state = State.DEPOSIT
             depositAcct = deposit.getAcct()
             if deposit.status == Status.LOGOUT:
-                this.handleCommand('logout')
+                self.handleCommand('logout')
                 return
             if deposit.status == Status.OK:
                 depositAmount = deposit.getNumber()
             if deposit.status == Status.LOGOUT:
-                this.handleCommand('logout')
+                self.handleCommand('logout')
                 return
             elif deposit.status == Status.OK:
-                this.validAcctsList[depositAcct]['deposit'] += depositAmount
-                wtsf(this.summaryFile, command, firstAcct=depositAcct,
+                self.validAcctsList[depositAcct]['deposit'] += depositAmount
+                wtsf(self.summaryFile, command, firstAcct=depositAcct,
                      amount=depositAmount)
-                this.state = State.IDLE
+                self.state = State.IDLE
         elif command == 'transfer':
             # transfer
-            transfer = Transfer(this.validAcctsList, this.mode)
+            transfer = Transfer(self.validAcctsList, self.mode)
             message = 'Input your account number: '
             transferFromAcct = transfer.getAcct(message)
             if transfer.status == Status.LOGOUT:
-                this.handleCommand('logout')
+                self.handleCommand('logout')
                 return
             if transfer.status == Status.OK:
                 transferAmount = transfer.getNumber(transferFromAcct)
             if transfer.status == Status.LOGOUT:
-                this.handleCommand('logout')
+                self.handleCommand('logout')
                 return
             if transfer.status == Status.OK:
                 message = "Input the destination account number: "
                 transferToAcct = transfer.getAcct(message)
             if transfer.status == Status.LOGOUT:
-                this.handleCommand('logout')
+                self.handleCommand('logout')
                 return
             elif transferFromAcct == transferToAcct:
                 print("sorry cannot transfer to your own account")
             elif transfer.status == Status.OK:
-                this.validAcctsList[transferFromAcct]['transfer'] += \
+                self.validAcctsList[transferFromAcct]['transfer'] += \
                                                                  transferAmount
-                wtsf(this.summaryFile, command, firstAcct=transferFromAcct,
+                wtsf(self.summaryFile, command, firstAcct=transferFromAcct,
                      amount=transferAmount, secondAcct=transferToAcct)
-                this.state = State.IDLE
+                self.state = State.IDLE
 
-        elif command == 'createacct' and this.mode == Modes.TELLER:
+        elif command == 'createacct' and self.mode == Modes.TELLER:
             # createacct
-            this.state = State.CREATEACCT
-            this.createAcct.createNewAccount()
-            if this.createAcct.status == Status.LOGOUT:
-                this.handleCommand('logout')
-            elif this.createAcct.status == Status.OK:
-                wtsf(this.summaryFile, command,
-                     firstAcct=this.createAcct.newAcctNum,
-                     acctName=this.createAcct.newAcctName)
-                this.state = State.IDLE
-        elif command == 'deleteacct' and this.mode == Modes.TELLER:
+            self.state = State.CREATEACCT
+            self.createAcct.createNewAccount()
+            if self.createAcct.status == Status.LOGOUT:
+                self.handleCommand('logout')
+            elif self.createAcct.status == Status.OK:
+                wtsf(self.summaryFile, command,
+                     firstAcct=self.createAcct.newAcctNum,
+                     acctName=self.createAcct.newAcctName)
+                self.state = State.IDLE
+        elif command == 'deleteacct' and self.mode == Modes.TELLER:
             # deleteacct
-            this.state = State.DELETEACCT
-            deleteacct = DeleteAcct(this.validAcctsList)
+            self.state = State.DELETEACCT
+            deleteacct = DeleteAcct(self.validAcctsList)
             deleteacct.deleteOldAccount()
             if deleteacct.status == Status.LOGOUT:
-                this.handleCommand('logout')
+                self.handleCommand('logout')
             elif deleteacct.status == Status.OK:
-                wtsf(this.summaryFile, command,
+                wtsf(self.summaryFile, command,
                      firstAcct=deleteacct.oldAcctNum,
                      acctName=deleteacct.oldAcctName)
-                this.state = State.IDLE
+                self.state = State.IDLE
         else:
             # Helper prompts
             if command != '?' and command != 'help':
                 print('Unrecognized command: "{}", Please use a valid command '
                       'string'.format(command))
-            if this.mode is not None and this.mode == Modes.ATM:
+            if self.mode is not None and self.mode == Modes.ATM:
                 print('Valid Commands: withdraw, deposit, transfer, logout, '
                       'off')
-            elif this.mode is not None and this.mode == Modes.TELLER:
+            elif self.mode is not None and self.mode == Modes.TELLER:
                 print('Valid Commands: withdraw, deposit, transfer, '
                       'createaccct, deleteacct, logout, off')
             else:

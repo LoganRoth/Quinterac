@@ -1,6 +1,6 @@
 import sys
 
-from frontend.app import main
+from backoffice.app import main
 from utility.utility import RetCode
 
 if __name__ == "__main__":

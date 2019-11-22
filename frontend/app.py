@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
 """
 app.py
 
-This is the actual executable python file that contains the main control loop
-for the Quinterac banking system.
+This is the python file that contains the main control loop for the Quinterac
+banking system.
 
 INTENT:
 A user should use this program to interact with the Quinterac banking system.
@@ -17,7 +16,8 @@ One run of the program is one "session" and thus, after a logout, a session is
 over at that is considered the end of a processing day.
 
 INTENDED USAGE:
-run "frontend.py validAcctsFile.txt summaryFile.txt"
+run "python -m frontend validAcctsListFile.txt summaryFile.txt"
+From the base dierctory of the QuinteracPrestigeWorldwide repo
 
 Followed by entering valid transaction commands and following resulting
 prompts.
@@ -36,12 +36,12 @@ Output file: summaryFile.txt
 This file will be written to during execution of the program based on which
 transactions occur during a session
 """
-import os
 import argparse
 
 from frontend.session import Session, State
 from frontend.frontendUtility import requiredInput as ri
-from frontend.frontendUtility import RetCode, Modes
+from frontend.frontendUtility import Modes
+from utility.utility import RetCode, isFileValid
 
 
 def areFilesValid(validAccts, summaryFile):
@@ -52,11 +52,9 @@ def areFilesValid(validAccts, summaryFile):
     @param validAccts  The file containing the valid accounts list
     @param summaryFile The file to be used for the transaction summary record
     """
-    if validAccts is None or not os.path.exists(validAccts):
-        print('Valid accounts list file not found')
+    if not isFileValid(validAccts, "Valid Accounts List File"):
         return False
-    if summaryFile is None or not os.path.exists(summaryFile):
-        print('Summary output file not found')
+    if not isFileValid(summaryFile, "Transaction Summary File"):
         return False
     return True
 
@@ -66,7 +64,7 @@ def parseArgs():
     Parses the arguments given to the script and returns the validAccts and
     summaryFile.
     """
-    parser = argparse.ArgumentParser(usage='frontend.py validAcctsList.txt '
+    parser = argparse.ArgumentParser(usage='app.py validAcctsList.txt '
                                            'summaryFile.txt')
     parser.add_argument(
         'validAccts',
@@ -92,9 +90,6 @@ def main():
     Commands at this level will only be the transaction commands, ie, login,
     logout, withdraw, etc. Not the sub-commands such as the amount to
     withdraw/transfer/deposit or the login mode of agent or machine.
-
-    @param validAccts  The file containing the valid accounts list
-    @param summaryFile The file to be used for the transaction summary record
     """
     validAccts, summaryFile = parseArgs()
     if not areFilesValid(validAccts, summaryFile):
