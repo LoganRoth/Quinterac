@@ -35,8 +35,8 @@ during the next day.
 """
 import argparse
 
-from backoffice.masterAccountsFile import MasterAccountsFile
-from backoffice.transactions import Transactions
+from backoffice_test.masterAccountsFile import MasterAccountsFile
+from backoffice_test.transactions import Transactions
 from utility.utility import RetCode, isFileValid
 
 
