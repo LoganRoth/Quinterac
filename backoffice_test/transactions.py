@@ -4,7 +4,7 @@ transactions.py
 This file contains the class and all of its methods to handle dealing with a
 list of transactions.
 """
-from backoffice.transaction import Transaction
+from backoffice_test.transaction import Transaction
 
 
 class Transactions:
