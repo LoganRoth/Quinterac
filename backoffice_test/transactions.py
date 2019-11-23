@@ -31,7 +31,7 @@ class Transactions:
             transactions = f.readlines()
         for tx in transactions:
             try:
-                if tx != 'EOS':
+                if tx != 'EOS\n':
                     self.lst.append(Transaction(tx))
             except ValueError:
                 print('Invalid transaction in the summary file: {}'.format(tx))
