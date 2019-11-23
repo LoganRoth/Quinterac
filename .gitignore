@@ -6,6 +6,7 @@ __pycache__/
 
 # C extensions
 *.so
+
 #Mac OS folder formatting
 .DS_Store
 
