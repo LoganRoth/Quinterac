@@ -94,6 +94,7 @@ class Transaction:
                       'rejected.'.format(self.acct1))
             else:
                 mafDct[self.acct1]['Balance'] = result
+                print('Withdraw Passed')
         else:
             print('Account {} not found in Master Accounts File, cannot '
                   'withdraw.'.format(self.acct1))
