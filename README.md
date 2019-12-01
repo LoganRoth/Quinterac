@@ -8,8 +8,6 @@ An old fashioned style banking system
 # 🤑
 # Yay Money$
 <p align="center">
-  <img width="800"  src="images/qaJoke.jpg">
-</p>
-<p align="center" style='margin-top: 2vw'>
-  <img width="800"  src="images/bugJoke.jpg">
+  <img width="400"  src="images/qaJoke.jpg"><span>
+  <img width="400"  src="images/bugJoke.jpg"></span>
 </p>
