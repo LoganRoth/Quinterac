@@ -1,1 +1,9 @@
-
+login
+machine
+deposit
+2345678
+1234
+deposit
+2345679
+5678
+logout
