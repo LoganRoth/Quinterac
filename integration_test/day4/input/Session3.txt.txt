@@ -1,0 +1,6 @@
+login
+machine
+withdraw
+3456789
+12340
+logout

@@ -1,0 +1,9 @@
+login
+machine
+withdraw
+2345678
+1234
+withdraw
+2345678
+5678
+logout
