@@ -1,0 +1,5 @@
+line 1
+Account 1234567 already in Master Accounts File. A new account cannot use a number already in the File
+line 2
+line 3
+line 4

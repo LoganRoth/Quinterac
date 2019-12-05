@@ -40,19 +40,31 @@ from backoffice.transactions import Transactions
 from utility.utility import RetCode, isFileValid
 
 
-def areFilesValid(masterAcctsFile, mergedSummaryFile):
+def areFilesValid(masterAcctsFile, mergedSummaryFile, masterAcctsFileOut,
+                  validAcctsFileOut):
     """
-    Checks if the given masterAcctsFile and mergedSummaryFile variables are
-    actually valid files.
+    Checks if the given masterAcctsFile, mergedSummaryFile, masterAcctsFileOut,
+    and validAcctsFileOut variables are actually valid files.
 
     @param masterAcctsFile  The file containing the Master Accounts File.
     @param mergedSummaryFile The file containing the concatenation of all of
                              the transaction summary files from the previous
                              day.
+    @param masterAcctsFileOut The name of the file to print the reusltant
+                              Master Accounts File to, needed for whitebox
+                              testing.
+    @param validAcctsFileOut The name of the file to write the resultant valid
+                             accounts list file to.
     """
     if not isFileValid(masterAcctsFile, "Master Accounts File"):
         return False
     if not isFileValid(mergedSummaryFile, "Merged Transaction Summary File"):
+        return False
+    if not isFileValid(masterAcctsFileOut, "Master Accounts File (Out)"):
+        return False
+    if validAcctsFileOut is not None and not isFileValid(validAcctsFileOut,
+                                                         "Valid Accounts List "
+                                                         "File"):
         return False
     return True
 
@@ -77,23 +89,48 @@ def parseArgs():
         help='The name of the file containing the concatenation of all of the '
              'transaction summary files from the previous day.'
     )
+    parser.add_argument(
+        'masterAcctsFileOut',
+        action='store',
+        default=None,
+        help='The name of the file to print the reusltant Master Accounts '
+             'File to, needed for whitebox testing.'
+    )
+    parser.add_argument(
+        'validAcctsFileOut',
+        action='store',
+        default=None,
+        help='The name of the file to write the resultant valid accounts list '
+             'file to.'
+    )
+    parser.add_argument(
+        '-w', '--whitebox',
+        action='store_true',
+        default=False,
+        help='Set if performing the whitebox tests.'
+    )
     args = parser.parse_args()
-    return args.masterAcctsFile, args.mergedSummaryFile
+    return (args.masterAcctsFile, args.mergedSummaryFile,
+            args.masterAcctsFileOut, args.validAcctsFileOut, args.whitebox)
 
 
 def main():
     """
     The main function of the Quinterac banking system's back office.
     """
-    masterAcctsFile, mergedSummaryFile = parseArgs()
-    if not areFilesValid(masterAcctsFile, mergedSummaryFile):
+    masterAcctsFile, mergedSummaryFile, masterAcctsFileOut, validAcctsFileOut,\
+        whitebox = parseArgs()
+    if masterAcctsFileOut is None:
+        masterAcctsFileOut = masterAcctsFile
+    if not areFilesValid(masterAcctsFile, mergedSummaryFile,
+                         masterAcctsFileOut, validAcctsFileOut):
         return RetCode.ERROR
-    maf = MasterAccountsFile(masterAcctsFile)
-    transactions = Transactions(mergedSummaryFile)
+    maf = MasterAccountsFile(masterAcctsFile, masterAcctsFileOut)
+    transactions = Transactions(mergedSummaryFile, whitebox)
     ret = maf.updateMAF(transactions.lst)
     if ret == RetCode.OK:
         maf.writeNewMAF()
-        maf.writeNewValidAccountsListFile()
+        maf.writeNewValidAccountsListFile(validAcctsFileOut)
     else:
         print('New Master Accounts File and Valid Accounts List File not '
               'written due to earilier errors.')

@@ -14,8 +14,9 @@ class MasterAccountsFile:
 
     @param masterAcctsFile The file containing the current master accounts file
     """
-    def __init__(self, masterAcctsFile):
+    def __init__(self, masterAcctsFile, masterAcctsFileOut):
         self.file = masterAcctsFile
+        self.fileOut = masterAcctsFileOut
         self.masterAccts = {}
         self.__createMasterAcctsDct()
 
@@ -57,19 +58,21 @@ class MasterAccountsFile:
         """
         Writes a new MAF file to be used for the next day.
         """
-        with open(self.file, 'w') as f:
+        with open(self.fileOut, 'w') as f:
             acctNumList = sorted(self.masterAccts.keys())
             for acct in acctNumList:
                 formattedStr = self.__formatAccount(acct)
                 if formattedStr is not None:
                     f.write(formattedStr)
 
-    def writeNewValidAccountsListFile(self):
+    def writeNewValidAccountsListFile(self, fileLoc):
         """
         Writes a new valid accounts list file to be used be the Front Ends
         on the next day.
         """
-        with open('validAcctsListFile.txt', 'w+') as f:
+        if fileLoc is None:
+            fileLoc = 'validAcctsListFile.txt'
+        with open(fileLoc, 'w+') as f:
             acctNumList = sorted(self.masterAccts.keys())
             for acct in acctNumList:
                 f.write('{}\n'.format(acct))
