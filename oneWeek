@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo 'login
+agent
+createacct
+1234567
+aaa
+logout' | python3 -m frontend validAcctsListFile.txt oneDayTest/summary1.txt
+
+echo 'login
+agent
+withdraw
+1234567
+bbb
+logout' | python3 -m frontend validAcctsListFile.txt oneDayTest/summary2.txt
+
+echo 'login
+agent
+createacct
+1234567
+ccc
+logout' | python3 -m frontend validAcctsListFile.txt oneDayTest/summary3.txt
+
+cat oneDayTest/summary1.txt oneDayTest/summary2.txt oneDayTest/summary3.txt > oneDayTest/summary.txt
+
+python3 -m backoffice oneDayTest/masterAccts.txt oneDayTest/summary.txt
