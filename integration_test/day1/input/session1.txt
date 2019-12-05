@@ -1,1 +1,6 @@
-
+login
+agent
+createacct
+1234567
+FirstName1 LastName1
+logout
