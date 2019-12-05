@@ -4,6 +4,6 @@ deposit
 2345678
 1234
 deposit
-2345679
+2345678
 5678
 logout
