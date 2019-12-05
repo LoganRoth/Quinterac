@@ -4,6 +4,7 @@ transaction.py
 This file contains the class and all of its methods to handle a single
 transaction.
 """
+from utility.utility import WhiteBoxPrinter
 
 
 class Transaction:
@@ -12,8 +13,9 @@ class Transaction:
 
     @param txString The file containing the current master accounts file
     """
-    def __init__(self, txString):
+    def __init__(self, txString, whitebox=False):
         splitTx = txString.split()
+        self.wb = WhiteBoxPrinter(whitebox)
         try:
             self.code = splitTx[0]
             self.acct1 = splitTx[1]
@@ -50,11 +52,16 @@ class Transaction:
         @param mafDct The dictionary describing the MAF
         """
         # Ensure account is not already in MAF
-        if self.acct1 in mafDct.keys():
+        if self.acct1 in mafDct.keys():  # 1
+            self.wb.print('line 1')
             print('Account {} already in Master Accounts File. A new account '
-                  'cannot use a number already in the File'.format(self.acct1))
-        else:
-            mafDct[self.acct1] = {'Name': self.acctName, 'Balance': 0}
+                  'cannot use a number already in the '
+                  'File'.format(self.acct1))  # 2
+            self.wb.print('line 2')
+        else:  # 3
+            self.wb.print('line 3')
+            mafDct[self.acct1] = {'Name': self.acctName, 'Balance': 0}  # 4
+            self.wb.print('line 4')
 
     def __deleteAcct(self, mafDct):
         """
@@ -90,6 +97,7 @@ class Transaction:
                       'rejected.'.format(self.acct1))
             else:
                 mafDct[self.acct1]['Balance'] = result
+                self.wb.print('Withdraw Passed')
         else:
             print('Account {} not found in Master Accounts File, cannot '
                   'withdraw.'.format(self.acct1))

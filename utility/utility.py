@@ -27,3 +27,18 @@ def isFileValid(fileToTest, nameOfFile):
         print('{} file not found'.format(nameOfFile))
         return False
     return True
+
+
+class WhiteBoxPrinter:
+    """
+    Class to set up a printer if whitebox testing is being done.
+    """
+    def __init__(self, whitebox):
+        self.whitebox = whitebox
+
+    def print(self, str):
+        """
+        Whitebox print function.
+        """
+        if self.whitebox:
+            print(str)
