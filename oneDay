@@ -5,7 +5,7 @@ machine
 deposit
 1234567
 20000
-logout' | python3 -m frontend oneDayTest/validAccts.txt oneDayTest/summary1.txt
+logout' | python3 -m frontend validAcctsListFile.txt oneDayTest/summary1.txt
 
 echo 'login
 machine
@@ -16,7 +16,7 @@ transfer
 1234567
 30000
 7654321
-logout' | python3 -m frontend oneDayTest/validAccts.txt oneDayTest/summary2.txt
+logout' | python3 -m frontend validAcctsListFile.txt oneDayTest/summary2.txt
 
 echo 'login
 agent
@@ -29,7 +29,7 @@ deposit
 deleteacct
 1234567
 cba
-logout' | python3 -m frontend oneDayTest/validAccts.txt oneDayTest/summary3.txt
+logout' | python3 -m frontend validAcctsListFile.txt oneDayTest/summary3.txt
 
 cat oneDayTest/summary1.txt oneDayTest/summary2.txt oneDayTest/summary3.txt > oneDayTest/summary.txt
 
