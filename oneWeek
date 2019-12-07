@@ -24,7 +24,7 @@ logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest/summary3.txt
 
 cat oneWeekTest/summary1.txt oneWeekTest/summary2.txt oneWeekTest/summary3.txt > oneWeekTest/summary.txt
 
-python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt
+python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAccts.txt validAcctsListFile.txt
 
 : > oneWeekTest/summary1.txt
 : > oneWeekTest/summary2.txt
@@ -59,7 +59,7 @@ logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest/summary3.txt
 
 cat oneWeekTest/summary1.txt oneWeekTest/summary2.txt oneWeekTest/summary3.txt > oneWeekTest/summary.txt
 
-python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt
+python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAccts.txt validAcctsListFile.txt
 
 : > oneWeekTest/summary1.txt
 : > oneWeekTest/summary2.txt
@@ -97,7 +97,7 @@ logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest/summary3.txt
 
 cat oneWeekTest/summary1.txt oneWeekTest/summary2.txt oneWeekTest/summary3.txt > oneWeekTest/summary.txt
 
-python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt
+python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAccts.txt validAcctsListFile.txt
 
 : > oneWeekTest/summary1.txt
 : > oneWeekTest/summary2.txt
@@ -131,7 +131,7 @@ logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest/summary3.txt
 
 cat oneWeekTest/summary1.txt oneWeekTest/summary2.txt oneWeekTest/summary3.txt > oneWeekTest/summary.txt
 
-python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt
+python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAccts.txt validAcctsListFile.txt
 
 : > oneWeekTest/summary1.txt
 : > oneWeekTest/summary2.txt
@@ -162,4 +162,4 @@ logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest/summary3.txt
 
 cat oneWeekTest/summary1.txt oneWeekTest/summary2.txt oneWeekTest/summary3.txt > oneWeekTest/summary.txt
 
-python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt
+python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAccts.txt validAcctsListFile.txt
