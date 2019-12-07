@@ -1,0 +1,168 @@
+#!\bin\bash
+
+#Script simulates 5 working days with 3 sessions a day for the quinterac banking system
+#Ensure oneWeekReset is run before running this
+
+#Day 1___________________________________________
+echo 'login
+agent
+createacct
+1234567
+aaa
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary1.txt
+
+echo 'login
+agent
+createacct
+2345678
+bbb
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary2.txt
+
+echo 'login
+agent
+createacct
+3456789
+ccc
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary3.txt
+
+type oneWeekTest\summary1.txt oneWeekTest\summary2.txt oneWeekTest\summary3.txt > oneWeekTest\summary.txt
+
+python3 -m backoffice oneWeekTest\masterAccts.txt oneWeekTest\summary.txt oneWeekTest\masterAccts.txt validAcctsListFile.txt
+
+: > oneWeekTest\summary1.txt
+: > oneWeekTest\summary2.txt
+: > oneWeekTest\summary3.txt
+: > oneDayTest\summary.txt
+
+
+#Day 2___________________________________________
+echo 'login
+agent
+deposit
+1234567
+10000
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary1.txt
+
+echo 'login
+machine
+deposit
+2345678
+10000
+deposit
+2345678
+10000
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary2.txt
+
+echo 'login
+machine
+deposit
+3456789
+30000
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary3.txt
+
+type oneWeekTest\summary1.txt oneWeekTest\summary2.txt oneWeekTest\summary3.txt > oneWeekTest\summary.txt
+
+python3 -m backoffice oneWeekTest\masterAccts.txt oneWeekTest\summary.txt oneWeekTest\masterAccts.txt validAcctsListFile.txt
+
+: > oneWeekTest\summary1.txt
+: > oneWeekTest\summary2.txt
+: > oneWeekTest\summary3.txt
+: > oneDayTest\summary.txt
+
+#Day 3___________________________________________
+echo 'login
+machine
+transfer
+1234567
+5000
+2345678
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary1.txt
+
+echo 'login
+agent
+transfer
+2345678
+15000
+3456789
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary2.txt
+
+echo 'login
+machine
+transfer
+3456789
+5000
+1234567
+transfer
+3456789
+20000
+2345678
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary3.txt
+
+type oneWeekTest\summary1.txt oneWeekTest\summary2.txt oneWeekTest\summary3.txt > oneWeekTest\summary.txt
+
+python3 -m backoffice oneWeekTest\masterAccts.txt oneWeekTest\summary.txt oneWeekTest\masterAccts.txt validAcctsListFile.txt
+
+: > oneWeekTest\summary1.txt
+: > oneWeekTest\summary2.txt
+: > oneWeekTest\summary3.txt
+: > oneDayTest\summary.txt
+
+#Day 4___________________________________________
+echo 'login
+agent
+withdraw
+1234567
+10000
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary1.txt
+
+echo 'login
+machine
+withdraw
+2345678
+20000
+withdraw
+2345678
+10000
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary2.txt
+
+echo 'login
+machine
+withdraw
+3456789
+20000
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary3.txt
+
+type oneWeekTest\summary1.txt oneWeekTest\summary2.txt oneWeekTest\summary3.txt > oneWeekTest\summary.txt
+
+python3 -m backoffice oneWeekTest\masterAccts.txt oneWeekTest\summary.txt oneWeekTest\masterAccts.txt validAcctsListFile.txt
+
+: > oneWeekTest\summary1.txt
+: > oneWeekTest\summary2.txt
+: > oneWeekTest\summary3.txt
+: > oneDayTest\summary.txt
+
+#Day 5___________________________________________
+echo 'login
+agent
+deleteacct
+1234567
+aaa
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary1.txt
+
+echo 'login
+agent
+deleteacct
+2345678
+bbb
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary2.txt
+
+echo 'login
+agent
+deleteacct
+3456789
+ccc
+logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest\summary3.txt
+
+type oneWeekTest\summary1.txt oneWeekTest\summary2.txt oneWeekTest\summary3.txt > oneWeekTest\summary.txt
+
+python3 -m backoffice oneWeekTest\masterAccts.txt oneWeekTest\summary.txt oneWeekTest\masterAccts.txt validAcctsListFile.txt
