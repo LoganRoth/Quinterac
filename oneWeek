@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Script simulates 5 working days with 3 sessions a day for the quinterac banking system
+#Ensure oneWeekReset is run before running this
+
 #Day 1___________________________________________
 echo 'login
 agent

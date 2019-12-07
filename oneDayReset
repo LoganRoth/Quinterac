@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#resets all text files to needed values to run 1 day test
 : > oneDayTest/summary1.txt
 : > oneDayTest/summary2.txt
 : > oneDayTest/summary3.txt

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#script simulates one working day for the quinterac banking system
+#Ensure oneDayReset is run before running this
+
 echo 'login
 machine
 deposit

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#resets all text files in order to run oneWeek test
 : > oneWeekTest/summary1.txt
 : > oneWeekTest/summary2.txt
 : > oneWeekTest/summary3.txt
