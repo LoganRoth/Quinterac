@@ -2,8 +2,8 @@ login
 machine
 withdraw
 2345678
-1234
+20000
 withdraw
 2345678
-5678
+10000
 logout

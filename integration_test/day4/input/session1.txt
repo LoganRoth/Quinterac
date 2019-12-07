@@ -1,6 +1,6 @@
 login
-machine
+agent
 withdraw
-3456789
-12340
+1234567
+10000
 logout

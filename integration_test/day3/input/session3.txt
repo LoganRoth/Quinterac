@@ -1,0 +1,11 @@
+login
+machine
+transfer
+3456789
+5000
+1234567
+transfer
+3456789
+20000
+2345678
+logout

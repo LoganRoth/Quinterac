@@ -1,6 +1,7 @@
 login
 agent
-deleteacct
+transfer
 2345678
-bbb
+15000
+3456789
 logout

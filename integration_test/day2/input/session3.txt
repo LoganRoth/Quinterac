@@ -2,5 +2,5 @@ login
 machine
 deposit
 3456789
-12340
+30000
 logout
