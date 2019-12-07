@@ -3,6 +3,8 @@
 #script simulates one working day for the quinterac banking system
 #Ensure oneDayReset is run before running this
 
+cd ..
+
 echo 'login
 machine
 deposit
@@ -37,3 +39,5 @@ logout' | python3 -m frontend validAcctsListFile.txt oneDayTest\summary3.txt
 type oneDayTest\summary1.txt oneDayTest\summary2.txt oneDayTest\summary3.txt > oneDayTest\summary.txt
 
 python3 -m backoffice oneDayTest\masterAccts.txt oneDayTest\summary.txt oneDayTest\masterAccts.txt validAcctsListFile.txt
+
+cd windowsScripts

@@ -3,6 +3,8 @@
 #Script simulates 5 working days with 3 sessions a day for the quinterac banking system
 #Ensure oneWeekReset is run before running this
 
+cd ..
+
 #Day 1___________________________________________
 echo 'login
 agent
@@ -27,7 +29,7 @@ logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest/summary3.txt
 
 cat oneWeekTest/summary1.txt oneWeekTest/summary2.txt oneWeekTest/summary3.txt > oneWeekTest/summary.txt
 
-python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAccts.txt validAcctsListFile.txt
+python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAcctsDay1.txt validAcctsListFile.txt
 
 : > oneWeekTest/summary1.txt
 : > oneWeekTest/summary2.txt
@@ -62,7 +64,7 @@ logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest/summary3.txt
 
 cat oneWeekTest/summary1.txt oneWeekTest/summary2.txt oneWeekTest/summary3.txt > oneWeekTest/summary.txt
 
-python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAccts.txt validAcctsListFile.txt
+python3 -m backoffice oneWeekTest/masterAcctsDay1.txt oneWeekTest/summary.txt oneWeekTest/masterAcctsDay2.txt validAcctsListFile.txt
 
 : > oneWeekTest/summary1.txt
 : > oneWeekTest/summary2.txt
@@ -100,7 +102,7 @@ logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest/summary3.txt
 
 cat oneWeekTest/summary1.txt oneWeekTest/summary2.txt oneWeekTest/summary3.txt > oneWeekTest/summary.txt
 
-python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAccts.txt validAcctsListFile.txt
+python3 -m backoffice oneWeekTest/masterAcctsDay2.txt oneWeekTest/summary.txt oneWeekTest/masterAcctsDay3.txt validAcctsListFile.txt
 
 : > oneWeekTest/summary1.txt
 : > oneWeekTest/summary2.txt
@@ -134,7 +136,7 @@ logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest/summary3.txt
 
 cat oneWeekTest/summary1.txt oneWeekTest/summary2.txt oneWeekTest/summary3.txt > oneWeekTest/summary.txt
 
-python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAccts.txt validAcctsListFile.txt
+python3 -m backoffice oneWeekTest/masterAcctsDay3.txt oneWeekTest/summary.txt oneWeekTest/masterAcctsDay4.txt validAcctsListFile.txt
 
 : > oneWeekTest/summary1.txt
 : > oneWeekTest/summary2.txt
@@ -165,4 +167,6 @@ logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest/summary3.txt
 
 cat oneWeekTest/summary1.txt oneWeekTest/summary2.txt oneWeekTest/summary3.txt > oneWeekTest/summary.txt
 
-python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAccts.txt validAcctsListFile.txt
+python3 -m backoffice oneWeekTest/masterAcctsDay4.txt oneWeekTest/summary.txt oneWeekTest/masterAcctsDay5.txt validAcctsListFile.txt
+
+cd unixScripts
