@@ -10,7 +10,7 @@ cd ..
 : > oneWeekTest/summary3.txt
 : > oneDayTest/summary.txt
 echo '0000000' > validAcctsListFile.txt
-: > oneWeekTest/masterAccts.txt
+: > oneWeekTest/masterAcctsDay0.txt
 
 #Day 1___________________________________________
 echo 'login
@@ -36,7 +36,7 @@ logout' | python3 -m frontend validAcctsListFile.txt oneWeekTest/summary3.txt
 
 cat oneWeekTest/summary1.txt oneWeekTest/summary2.txt oneWeekTest/summary3.txt > oneWeekTest/summary.txt
 
-python3 -m backoffice oneWeekTest/masterAccts.txt oneWeekTest/summary.txt oneWeekTest/masterAcctsDay1.txt validAcctsListFile.txt
+python3 -m backoffice oneWeekTest/masterAcctsDay0.txt oneWeekTest/summary.txt oneWeekTest/masterAcctsDay1.txt validAcctsListFile.txt
 
 : > oneWeekTest/summary1.txt
 : > oneWeekTest/summary2.txt

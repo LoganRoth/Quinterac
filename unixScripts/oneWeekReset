@@ -9,6 +9,11 @@ cd ..
 : > oneWeekTest/summary3.txt
 : > oneDayTest/summary.txt
 echo '0000000' > validAcctsListFile.txt
-: > oneWeekTest/masterAccts.txt
+: > oneWeekTest/masterAcctsDay0.txt
+: > oneWeekTest/masterAcctsDay1.txt
+: > oneWeekTest/masterAcctsDay2.txt
+: > oneWeekTest/masterAcctsDay3.txt
+: > oneWeekTest/masterAcctsDay4.txt
+: > oneWeekTest/masterAcctsDay5.txt
 
 cd unixScripts
