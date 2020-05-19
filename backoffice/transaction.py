@@ -27,6 +27,7 @@ class Transaction:
             self.acct1 = '00000000'
             self.acct2 = '00000000'
             self.amt = 0
+            self.code = 'NONE'
 
     def update(self, mafDct):
         """
